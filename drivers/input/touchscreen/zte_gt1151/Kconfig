@@ -1,0 +1,115 @@
+#
+# GT1151 touchscreen driver configuration
+#
+menuconfig TOUCHSCREEN_GT1151
+	bool "GT1151 touchscreen"
+	default n
+	help
+	  Say Y here if you have a GT1151 touchscreen connected
+	  to your system.
+
+	  If unsure, say N.
+
+if TOUCHSCREEN_GT1151
+
+choice
+	default TOUCHSCREEN_SYNAPTICS_DSX_I2C
+	prompt "Synaptics DSX touchscreen bus interface"
+
+config TOUCHSCREEN_SYNAPTICS_DSX_I2C
+	bool "I2C"
+	depends on I2C
+	help
+	  Say Y here if you have a Synaptics DSX touchscreen interfaced
+	  to the host processor over I2C
+
+	  If unsure, say N.
+
+	  This module uses the services of DSX CORE
+
+config TOUCHSCREEN_SYNAPTICS_DSX_SPI
+	bool "SPI"
+	depends on SPI_MASTER
+	help
+	  Say Y here if you have a Synaptics DSX touchscreen interfaced
+	  to the host processor over SPI
+
+	  If unsure, say N.
+
+	  This module uses the services of DSX CORE
+endchoice
+
+config GT1151_TOUCHPANEL_DRIVER
+	tristate "Goodix GT1151 touchpanel driver"
+	depends on TOUCHSCREEN_GT1151
+	help
+
+	  Say Y here if you have a Goodix GT1151 touchscreen connected
+	  to your system.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called gt1x.
+
+config GT1151_TOUCHPANEL_EXTENTS
+	tristate "Goodix GT1151 Tools for debuging"
+	depends on GT1151_TOUCHPANEL_DRIVER
+	help
+	  This is application debug interface support for Goodix GT1151
+	  touchscreens.
+
+	  Say Y here if you want to have a Android app debug interface
+	  to your system.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called gt1x_extents.
+
+config GT1151_TOUCHPANEL_GENERIC
+	tristate "Goodix GT1151 Tools for debuging"
+	depends on GT1151_TOUCHPANEL_DRIVER
+	help
+	  This is application debug interface support for Goodix GT1151
+	  touchscreens.
+
+	  Say Y here if you want to have a Android app debug interface
+	  to your system.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called gt1x_generic.
+
+config GT1151_TOUCHPANEL_UPDATE
+	tristate "Goodix GT1151 touchpanel auto update support"
+	depends on GT1151_TOUCHPANEL_DRIVER
+	help
+	  This enables support for firmware update for Goodix GT1151
+	  touchscreens.
+
+	  Say Y here if you have a Goodix GT1151 touchscreen connected
+	  to your system.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called gt1x_update.
+
+config GT1151_TOUCHPANEL_DEBUG
+	tristate "Gt1x Tools for debuging"
+	depends on GT1151_TOUCHPANEL_DRIVER
+	help
+	  This is application debug interface support for Goodix GT1151
+	  touchscreens.
+
+	  Say Y here if you want to have a Android app debug interface
+	  to your system.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called gt1x_tools.
+
+endif

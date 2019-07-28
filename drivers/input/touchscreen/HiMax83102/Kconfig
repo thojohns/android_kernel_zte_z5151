@@ -1,0 +1,30 @@
+#
+# Himax Touchscreen driver configuration
+#
+
+config TOUCHSCREEN_HIMAX_I2C_HX83102
+        tristate "HIMAX chipset HX83102 touchscreen"
+		depends on TOUCHSCREEN_HIMAX_CHIPSET_HX83102
+		help
+		This enables support for HIMAX CHIPSET HX83102 over I2C based touchscreens.
+
+config TOUCHSCREEN_HIMAX_DEBUG_HX83102
+        tristate "HIMAX HX83102 debug function"
+		depends on TOUCHSCREEN_HIMAX_I2C_HX83102
+		help
+		This enables support for HIMAX HX83102 debug function.
+
+config TOUCHSCREEN_HIMAX_ITO_TEST_HX83102
+	tristate "HIMAX HX83102 test over Dragon Board"
+	depends on TOUCHSCREEN_HIMAX_I2C_HX83102
+	help
+	  This enables support for HIMAX HX83102 test over Dragon Board.
+
+config HMX_DB_HX83102
+	tristate "HIMAX driver test over Dragon Board"
+	depends on TOUCHSCREEN_HIMAX_I2C_HX83102
+	help
+	  This enables support for HIMAX driver test over Dragon Board.
+
+config HXTS_FIRMWARE_PATH
+	string "HIMAX firmware path"

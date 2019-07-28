@@ -1,0 +1,119 @@
+source "drivers/video/msm/ba/Kconfig"
+source "drivers/video/msm/msm_dba/Kconfig"
+
+if FB_MSM
+config FB_MSM_MDSS_COMMON
+	bool
+
+choice
+	prompt "MDP HW version"
+	default FB_MSM_MDP
+
+config FB_MSM_MDP
+	bool "MDP HW"
+	---help---
+	  Support for MSM MDP HW revision 2.2
+	  Say Y here if this is msm7201 variant platform.
+
+config FB_MSM_MDSS
+	bool "MDSS HW"
+	select SYNC
+	select SW_SYNC
+	select FB_MSM_MDSS_COMMON
+	---help---
+	The Mobile Display Sub System (MDSS) driver supports devices which
+	contain MDSS hardware block.
+
+	The MDSS driver implements frame buffer interface to provide access to
+	the display hardware and provide a way for users to display graphics
+	on connected display panels.
+
+config FB_MSM_MDP_NONE
+	bool "MDP HW None"
+	---help---
+	  Say Y here if this is mdm platform.
+
+endchoice
+
+config FB_MSM_QPIC
+	bool
+	select FB_MSM_MDSS_COMMON
+
+config FB_MSM_QPIC_ILI_QVGA_PANEL
+	bool "Qpic MIPI ILI QVGA Panel"
+	select FB_MSM_QPIC
+	---help---
+	  Support for MIPI ILI QVGA (240x320) panel
+	  ILI TECHNOLOGY 9341
+	  with on-chip full display RAM
+	  use parallel interface
+
+config FB_MSM_QPIC_PANEL_DETECT
+	bool "Qpic Panel Detect"
+	select FB_MSM_QPIC_ILI_QVGA_PANEL
+	---help---
+	  Support for Qpic panel auto detect
+
+if FB_MSM_MDSS
+	source "drivers/video/msm/mdss/Kconfig"
+endif
+
+#/*zte add for lcd common function begin */
+config ZTE_LCD_COMMON_FUNCTION
+	bool "Support for ZTE lcd common function"
+	default y
+
+config ZTE_LCD_BACKLIGHT_LEVEL_CURVE
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "Support for ZTE lcd backlight curve"
+
+config ZTE_LCD_VDDIO_ALWAYS_ON
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "Support for ZTE lcd vddio always on"
+
+config ZTE_LCD_REG_DEBUG
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "Support lcd register debug in root version"
+
+config ZTE_LCD_GPIO_CTRL_POWER
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "Support for ZTE gpio power ctrl"
+
+config ZTE_LCDBL_I2C_CTRL_VSP_VSN
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "Support for ZTE vsp vsn power ctrl"
+
+config ZTE_LCD_DCSBL_CABC_GRADIENT
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "Support for ZTE dcs bl cabc gradient effect"
+
+config ZTE_LCD_CHANGE_IC_PAGE
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "Support for change lcd ic page"
+
+config ZTE_LCD_ESD_ERROR_CTRL
+	bool "Support for lcd esd check error ctrl"
+	default n
+
+config ZTE_LCD_CABC3_EXTREME_POWER_SAVE
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "Support for ZTE extreme power save modem cabc"
+
+config ZTE_LCD_CLOSE_CABC_GRADIENT_BEFORESLEEP
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "Support for ZTE close cabc gradient before sleep for jd9161b"
+
+config ZTE_LCD_RESET_PIN_CTRL
+	depends on ZTE_LCD_COMMON_FUNCTION
+	bool "Support for lcd reset pin ctrl"
+
+config ZTE_FB_ASYNC_RESUME
+	bool "Support fb async resume"
+	default n
+
+config ZTE_MM_PP_DPPS_FB_RELEASE_ERR
+	bool "Support fb release error"
+	default n
+
+#/*zte add for lcd common function end */
+endif

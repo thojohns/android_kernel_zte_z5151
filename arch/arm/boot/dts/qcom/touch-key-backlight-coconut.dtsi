@@ -1,0 +1,81 @@
+//for touchscreen and key and keypad-backlight
+
+&soc {
+	i2c@78b7000 {
+		synaptics@22 {
+			compatible = "synaptics,dsx-i2c";
+			reg = <0x22>;
+			interrupt-parent = <&tlmm>;
+			interrupts = <65 0x2008>;
+			vdd_ana-supply = <&pm8937_l17>;
+			vcc_i2c-supply = <&pm8937_l6>;
+			synaptics,pwr-reg-name = "vdd_ana";
+			synaptics,bus-reg-name = "vcc_i2c";
+			pinctrl-names = "pmx_ts_active", "pmx_ts_suspend";
+			pinctrl-0 = <&ts_int_active &ts_reset_active>;
+			pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+			synaptics,reset-gpio = <&tlmm 64 0x0>;
+			synaptics,irq-gpio = <&tlmm 65 0x0>;
+			synaptics,irq-on-state = <0>;
+			synaptics,irq-flags = <0x2008>; /* IRQF_ONESHOT | IRQF_TRIGGER_LOW */
+			synaptics,power-delay-ms = <100>;
+			synaptics,reset-delay-ms = <100>;
+			synaptics,reset-on-state = <0>;
+			synaptics,reset-active-ms = <20>;
+			synaptics,cap-button-codes = <158 102 187>;
+		};
+	};
+
+	gen-vkeys {
+		compatible = "zte,gen-vkeys";
+		label = "synaptics_dsx";
+		zte,disp-maxy_px = <1920>;
+		zte,disp-maxy_mm = <1335>;//0.1mm
+		zte,disp-maxx_mm = <740>;//0.1mm
+		zte,x1=<160>;
+		zte,x2=<375>;
+		zte,x3=<580>;
+		zte,lcd_offset=<25>;//距离LCD至少2mm 这里再放宽0.5mm
+		zte,y_max_offset=<150>;
+		zte,dx=<100>;//标准中X范围为5mm+-1mm取中值*2
+		zte,key-codes = <158 102 187>;
+	};
+
+	gpio_keys {
+		compatible = "gpio-keys";
+		input-name = "gpio-keys";
+		pinctrl-names = "tlmm_gpio_key_active","tlmm_gpio_key_suspend";
+		pinctrl-0 = <&gpio_key_active>;
+		pinctrl-1 = <&gpio_key_suspend>;
+
+		vol_down {
+			label = "volume_down";
+			gpios = <&tlmm 128 0x1>;
+			linux,input-type = <1>;
+			linux,code = <114>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+		vol_up {
+			label = "volume_up";
+			gpios = <&tlmm 91 0x1>;
+			linux,input-type = <1>;
+			linux,code = <115>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+	};
+
+	/*gpio-leds {
+		compatible = "gpio-leds";
+		status = "okay";
+		pinctrl-names = "default";
+		pinctrl-0 = <&button_backlight_off>;
+
+		keypad-backlight {
+			gpios = <&tlmm 97 0>;
+			label = "button-backlight";
+			linux,default-trigger = "none";
+		};
+	};*/
+};

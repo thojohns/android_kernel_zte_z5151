@@ -1,0 +1,367 @@
+ /* Copyright (c) 2015, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+&mdss_mdp {
+	dsi_dijing_ili9881f_boe_720p_video: qcom,mdss_dsi_dijing_ili9881f_boe_720p_video {
+		qcom,mdss-dsi-panel-name = "ili9881f dijing 720p video 5p7inch dsi panel";
+		qcom,cont-splash-enabled;
+		zte,lcd_bl_vsp_vsn_voltage = <0xf>;
+		qcom,mdss-dsi-panel-controller = <&mdss_dsi0>;
+		qcom,mdss-dsi-panel-type = "dsi_video_mode";
+		qcom,mdss-dsi-panel-framerate = <60>;
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-panel-width = <720>;
+		qcom,mdss-dsi-panel-height = <1440>;
+		qcom,mdss-dsi-h-front-porch = <122>;
+		qcom,mdss-dsi-h-back-porch = <110>;
+		qcom,mdss-dsi-h-pulse-width = <20>;
+		qcom,mdss-dsi-h-sync-skew = <0>;
+		qcom,mdss-dsi-v-back-porch = <16>;
+		qcom,mdss-dsi-v-front-porch = <255>;
+		qcom,mdss-dsi-v-pulse-width = <10>;
+		qcom,mdss-dsi-h-left-border = <0>;
+		qcom,mdss-dsi-h-right-border = <0>;
+		qcom,mdss-dsi-v-top-border = <0>;
+		qcom,mdss-dsi-v-bottom-border = <0>;
+		qcom,mdss-dsi-bpp = <24>;
+		qcom,mdss-dsi-color-order = "rgb_swap_rgb";
+		qcom,mdss-dsi-underflow-color = <0xff>;
+		qcom,mdss-dsi-border-color = <0>;
+		qcom,mdss-dsi-on-command = [
+			39 01 00 00 00 00 04 FF 98 81 01 //page1
+			39 01 00 00 00 00 02 EA 00 //0f
+			39 01 00 00 00 00 02 12 06
+			39 01 00 00 00 00 02 B9 20
+			39 01 00 00 00 00 02 BA 01
+
+			39 01 00 00 00 00 02 A0 01
+			39 01 00 00 00 00 02 A1 82
+			39 01 00 00 00 00 02 A2 25
+			39 01 00 00 00 00 02 A3 82
+			39 01 00 00 00 00 02 A4 25
+			39 01 00 00 00 00 02 A7 82
+			39 01 00 00 00 00 02 A8 82
+			39 01 00 00 00 00 02 A9 25
+			39 01 00 00 00 00 02 AA 25
+
+			39 01 00 00 00 00 04 FF 98 81 02 //page2
+			39 01 00 00 00 00 02 4D 0E//turn off source precharge
+			39 01 00 00 00 00 02 4F 00//Latch CLK delay
+			39 01 00 00 00 00 02 40 48//sdt
+			39 01 00 00 00 00 02 4B 5A//source chopper//52
+
+			39 01 00 00 00 00 04 FF 98 81 05 //page5
+			39 01 00 00 00 00 02 21 26//vcom bias//26
+
+			39 01 00 00 00 00 02 01 01//inversion scan
+
+			39 01 00 00 00 00 02 29 97//GVDDP=5.5
+			39 01 00 00 00 00 02 2A 97//GVDDN=-5.5
+
+			39 01 00 00 00 00 02 23 a1 //HO1
+			39 01 00 00 00 00 02 24 57 //HO2
+			39 01 00 00 00 00 02 27 a7 //GH
+
+			39 01 00 00 00 00 02 25 35 //LO1
+			39 01 00 00 00 00 02 26 a7 //LO2
+			39 01 00 00 00 00 02 28 B1 //GL
+
+			39 01 00 00 00 00 02 03 01//VCOM1
+			39 01 00 00 00 00 02 04 98//VCOM1
+			39 01 00 00 00 00 02 05 01//VCOM2
+			39 01 00 00 00 00 02 06 98//VCOM2
+
+			39 01 00 00 00 00 04 FF 98 81 06 //page6
+
+			39 01 00 00 00 00 02 2E 01
+			39 01 00 00 00 00 02 C0 CF
+			39 01 00 00 00 00 02 C1 02
+
+			39 01 00 00 00 00 02 D6 91//Test out4 8hsync 9vsync
+			39 01 00 00 00 00 02 D7 49//Test out4 8hsync 9vsync
+			39 01 00 00 00 00 02 D8 01//Test out 0 6hsync 7vsync
+
+			39 01 00 00 00 00 04 FF 98 81 08
+			39 01 00 00 00 00 02 00 00
+			39 01 00 00 00 00 02 01 00
+			39 01 00 00 00 00 02 02 00
+			39 01 00 00 00 00 02 03 37
+			39 01 00 00 00 00 02 04 00
+			39 01 00 00 00 00 02 05 62
+			39 01 00 00 00 00 02 06 00
+			39 01 00 00 00 00 02 07 99
+			39 01 00 00 00 00 02 08 00
+			39 01 00 00 00 00 02 09 CB
+			39 01 00 00 00 00 02 0A 00
+			39 01 00 00 00 00 02 0B F5
+			39 01 00 00 00 00 02 0C 01
+			39 01 00 00 00 00 02 0D 27
+			39 01 00 00 00 00 02 0E 01
+			39 01 00 00 00 00 02 0F 4F
+			39 01 00 00 00 00 02 10 01
+			39 01 00 00 00 00 02 11 92
+			39 01 00 00 00 00 02 12 01
+			39 01 00 00 00 00 02 13 C5
+			39 01 00 00 00 00 02 14 01
+			39 01 00 00 00 00 02 15 F7
+			39 01 00 00 00 00 02 16 02
+			39 01 00 00 00 00 02 17 27
+			39 01 00 00 00 00 02 18 02
+			39 01 00 00 00 00 02 19 58
+			39 01 00 00 00 00 02 1A 02
+			39 01 00 00 00 00 02 1B 92
+			39 01 00 00 00 00 02 1C 02
+			39 01 00 00 00 00 02 1D B6
+			39 01 00 00 00 00 02 1E 02
+			39 01 00 00 00 00 02 1F E3
+			39 01 00 00 00 00 02 20 03
+			39 01 00 00 00 00 02 21 08
+			39 01 00 00 00 00 02 22 03
+			39 01 00 00 00 00 02 23 38
+			39 01 00 00 00 00 02 24 03
+			39 01 00 00 00 00 02 25 71
+			39 01 00 00 00 00 02 26 03
+			39 01 00 00 00 00 02 27 A1
+			39 01 00 00 00 00 02 28 03
+			39 01 00 00 00 00 02 29 E8
+
+			//Neg Register
+			39 01 00 00 00 00 02 80 00
+			39 01 00 00 00 00 02 81 00
+			39 01 00 00 00 00 02 82 00
+			39 01 00 00 00 00 02 83 37
+			39 01 00 00 00 00 02 84 00
+			39 01 00 00 00 00 02 85 62
+			39 01 00 00 00 00 02 86 00
+			39 01 00 00 00 00 02 87 99
+			39 01 00 00 00 00 02 88 00
+			39 01 00 00 00 00 02 89 CB
+			39 01 00 00 00 00 02 8A 00
+			39 01 00 00 00 00 02 8B F5
+			39 01 00 00 00 00 02 8C 01
+			39 01 00 00 00 00 02 8D 27
+			39 01 00 00 00 00 02 8E 01
+			39 01 00 00 00 00 02 8F 4F
+			39 01 00 00 00 00 02 90 01
+			39 01 00 00 00 00 02 91 92
+			39 01 00 00 00 00 02 92 01
+			39 01 00 00 00 00 02 93 C5
+			39 01 00 00 00 00 02 94 01
+			39 01 00 00 00 00 02 95 F7
+			39 01 00 00 00 00 02 96 02
+			39 01 00 00 00 00 02 97 27
+			39 01 00 00 00 00 02 98 02
+			39 01 00 00 00 00 02 99 58
+			39 01 00 00 00 00 02 9A 02
+			39 01 00 00 00 00 02 9B 92
+			39 01 00 00 00 00 02 9C 02
+			39 01 00 00 00 00 02 9D B6
+			39 01 00 00 00 00 02 9E 02
+			39 01 00 00 00 00 02 9F E3
+			39 01 00 00 00 00 02 A0 03
+			39 01 00 00 00 00 02 A1 08
+			39 01 00 00 00 00 02 A2 03
+			39 01 00 00 00 00 02 A3 38
+			39 01 00 00 00 00 02 A4 03
+			39 01 00 00 00 00 02 A5 71
+			39 01 00 00 00 00 02 A6 03
+			39 01 00 00 00 00 02 A7 A1
+			39 01 00 00 00 00 02 A8 03
+			39 01 00 00 00 00 02 A9 E8
+
+			39 01 00 00 00 00 04 FF 98 81 0E//pageE
+			39 01 00 00 00 00 02 00 A0// mode select a0 is Va1 is H
+
+			//================isd===isplay finetune code====================================================================
+			39 01 00 00 00 00 04 FF 98 81 01 //page1
+
+			39 01 00 00 00 00 02 0b 00
+			39 01 00 00 00 00 02 02 97 //97
+			39 01 00 00 00 00 02 03 05
+
+			39 01 00 00 00 00 02 0c 97 //97
+			39 01 00 00 00 00 02 0d 97 //97
+			39 01 00 00 00 00 02 0e 05
+			39 01 00 00 00 00 02 0f 05
+
+			39 01 00 00 00 00 04 FF 98 81 0E //pageE
+
+			39 01 00 00 00 00 02 c8 70
+
+			39 01 00 00 00 00 02 07 31 //bit6 TSXD gatingbit 0 tp term modulation enable
+
+			39 01 00 00 00 00 02 2D 96 //RTN2 setting//95
+			39 01 00 00 00 00 02 25 06 //Unit0 term2 setting
+			39 01 00 00 00 00 02 26 86 //Unit0 term2 setting //29
+
+			39 01 00 00 00 00 02 29 41 //Unit line number //3A DEFAULT // 40 = 64 LINE
+
+			//------term1 tunia2rng ameter--------------------------
+			39 01 00 00 00 00 02 c0 01 //how many term1
+			39 01 00 00 00 00 02 c1 20 //term1 period //20
+			39 01 00 00 00 00 02 c2 20 //T63 period
+
+			//SRC output0 gni2hd; i-z; 2 G0; 3 G255; 4 Last Data
+			39 01 00 00 00 00 02 2E 44 //term1_1 PRZ1 & PRZ2
+
+			//-----term2 tuninm2ag pmeter---------------------------
+			39 01 00 00 00 00 02 c3 00 //term2 SRC keep 00 gnd; 01 hi-z; 02 G0; 03 G255; 04 Last Data
+
+			//------term3 tunia2rng ameter---------------------------
+			39 01 00 00 00 00 02 D0 14 // 0x1x re-scan 2 line0x2x re-scan 1 line//14
+
+			39 01 00 00 00 00 02 D4 10//10
+			39 01 00 00 00 00 02 D5 10//60
+			39 01 00 00 00 00 02 D6 97//96
+			39 01 00 00 00 00 02 D7 95//97
+			39 01 00 00 00 00 02 D8 00
+
+			39 01 00 00 00 00 02 DC 88
+			39 01 00 00 00 00 02 DD 88
+			39 01 00 00 00 00 02 DE 88
+			39 01 00 00 00 00 02 DF 88
+
+			//-----tp term modn2oulan-------------------------------------
+			39 01 00 00 00 00 02 2B 17
+
+			39 01 00 00 00 00 02 60 12
+			39 01 00 00 00 00 02 62 0F
+			39 01 00 00 00 00 02 64 14
+			39 01 00 00 00 00 02 66 10
+			39 01 00 00 00 00 02 68 13
+			39 01 00 00 00 00 02 6A 11
+			39 01 00 00 00 00 02 6C 12
+			39 01 00 00 00 00 02 6E 10
+			39 01 00 00 00 00 02 70 0F
+			39 01 00 00 00 00 02 72 11
+			39 01 00 00 00 00 02 74 14
+			39 01 00 00 00 00 02 76 13
+			39 01 00 00 00 00 02 78 0F
+			39 01 00 00 00 00 02 7A 14
+			39 01 00 00 00 00 02 7C 11
+			39 01 00 00 00 00 02 7E 12
+			39 01 00 00 00 00 02 80 10
+			39 01 00 00 00 00 02 82 13
+			39 01 00 00 00 00 02 84 0F
+			39 01 00 00 00 00 02 86 11
+			39 01 00 00 00 00 02 88 10
+			39 01 00 00 00 00 02 8A 14
+			39 01 00 00 00 00 02 8C 12
+			39 01 00 00 00 00 02 8E 13
+
+			39 01 00 00 00 00 02 61 35
+			39 01 00 00 00 00 02 63 27
+			39 01 00 00 00 00 02 65 41
+			39 01 00 00 00 00 02 67 2A
+			39 01 00 00 00 00 02 69 3C
+			39 01 00 00 00 00 02 6B 31
+			39 01 00 00 00 00 02 6D 38
+			39 01 00 00 00 00 02 6F 2D
+			39 01 00 00 00 00 02 71 2A
+			39 01 00 00 00 00 02 73 33
+			39 01 00 00 00 00 02 75 3E
+			39 01 00 00 00 00 02 77 3A
+			39 01 00 00 00 00 02 79 28
+			39 01 00 00 00 00 02 7B 40
+			39 01 00 00 00 00 02 7D 30
+			39 01 00 00 00 00 02 7F 37
+			39 01 00 00 00 00 02 81 2C
+			39 01 00 00 00 00 02 83 3D
+			39 01 00 00 00 00 02 85 29
+			39 01 00 00 00 00 02 87 32
+			39 01 00 00 00 00 02 89 2B
+			39 01 00 00 00 00 02 8B 3F
+			39 01 00 00 00 00 02 8D 36
+			39 01 00 00 00 00 02 8F 3B
+
+			39 01 00 00 00 00 04 FF 98 81 01 //page1
+			39 01 00 00 00 00 02 b0 34
+			39 01 00 00 00 00 02 b2 04
+
+			39 01 00 00 00 00 02 32 02//DEFAULT 2F
+			39 01 00 00 00 00 02 48 02//DEFAULT 2F
+			39 01 00 00 00 00 02 62 02//DEFAULT 2F
+			39 01 00 00 00 00 02 78 02//DEFAULT 2F
+
+			39 01 00 00 00 00 04 FF 98 81 05 //page5
+			39 01 00 00 00 00 02 20 55//source bias
+
+			39 01 00 00 00 00 04 FF 98 81 02 //page2
+			39 01 00 00 00 00 02 4e 88//
+			39 01 00 00 00 00 02 4a 08//
+			39 01 00 00 00 00 02 62 02
+			39 01 00 00 00 00 02 63 00
+
+			39 01 00 00 00 00 04 FF 98 81 03
+			39 01 00 00 00 00 02 83 60 //8bit
+			39 01 00 00 00 00 02 84 03 //30.2KHZ
+
+			39 01 00 00 00 00 04 FF 98 81 00 //Page0
+			//39 01 00 00 00 00 03 68 02 01 //03 00 dimming
+			39 01 00 00 00 00 03 51 00 00
+			39 01 00 00 00 00 02 53 24
+			39 01 00 00 00 00 02 55 02
+			05 01 00 00 64 00 02 11 00
+			05 01 00 00 14 00 02 29 00
+			39 01 00 00 00 00 02 35 00
+		];
+		qcom,mdss-dsi-off-command = [
+			05 01 00 00 14 00 02 28 00
+			05 01 00 00 78 00 02 10 00
+			39 01 00 00 00 00 02 4F 01
+		];
+		qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+		qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
+		zte,mdss-dsi-cabc-default-value = <0x02>;
+		zte,mdss-dsi-cabc-off-command = [39 01 00 00 00 00 02 55 00
+		];
+		zte,mdss-dsi-cabc-low-command = [39 01 00 00 00 00 02 55 01
+		];
+		zte,mdss-dsi-cabc-medium-command = [39 01 00 00 00 00 02 55 02
+		];
+		zte,mdss-dsi-cabc-high-command = [39 01 00 00 00 00 02 55 03
+		];
+		zte,mdss-dsi-cabc-command-state = "dsi_lp_mode";
+		qcom,mdss-dsi-lp11-init;
+		qcom,mdss-dsi-h-sync-pulse = <0>;
+		qcom,mdss-dsi-traffic-mode = "burst_mode";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+		qcom,mdss-dsi-panel-timings = [A9 26 18 00 4E 54 1C 26 1F 03 04 00];
+		qcom,mdss-dsi-t-clk-post = <0x04>;
+		qcom,mdss-dsi-t-clk-pre = <0x21>;
+		qcom,mdss-dsi-bl-min-level = <3>;
+		qcom,mdss-dsi-bl-max-level = <255>;
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+		qcom,mdss-dsi-reset-sequence = <1 10>, <0 5>, <1 45>;
+		qcom,mdss-pan-physical-width-dimension = <64>;
+		qcom,mdss-pan-physical-height-dimension = <128>;
+		qcom,mdss-dsi-tx-eot-append;
+		qcom,mdss-dsi-post-init-delay = <1>;
+		zte,lcm_reset_pin_keep_high_sleeping;
+		zte,lcm_backlight_curve_mode = "lcd_brightness_max_350_lux";
+
+		qcom,esd-check-enabled;
+		qcom,mdss-dsi-panel-status-command=[06 01 00 01 05 00 01 0A
+											06 01 00 01 05 00 01 D8];
+		qcom,mdss-dsi-panel-status-command-state="dsi_lp_mode";
+		qcom,mdss-dsi-panel-status-check-mode="reg_read";
+		qcom,mdss-dsi-panel-status-value=<0x9C 0x0>;
+		qcom,mdss-dsi-panel-status-read-length = <1 1>;
+	};
+};

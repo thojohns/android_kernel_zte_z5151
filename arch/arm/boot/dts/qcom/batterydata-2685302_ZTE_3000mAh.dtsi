@@ -1,0 +1,52 @@
+
+qcom,2685302_zte_p8f0v70_3000mah_averaged_masterslave_nov22nd2016 {
+	/* #2685302_ZTE_P8F0V70_3000mAh_averaged_MasterSlave_Nov22nd2016*/
+	qcom,max-voltage-uv = <4400000>;
+	qcom,nom-batt-capacity-mah = <3000>;
+	/*qcom,batt-id-kohm = <430>;*/
+	qcom,batt-id-kohm = <430>;
+	qcom,batt-chip-code = <20>;
+	qcom,battery-beta = <4050>;
+	qcom,battery-type = "2685302_zte_p8f0v70_3000mah_averaged_masterslave_nov22nd2016";
+	qcom,chg-rslow-comp-c1 = <3499384>;
+	qcom,chg-rslow-comp-c2 = <5690162>;
+	qcom,chg-rs-to-rslow = <1097707>;
+	qcom,chg-rslow-comp-thr = <0xB1>;
+	qcom,checksum = <0x4B0B>;
+	qcom,fastchg-current-ma = <3000>;
+	qcom,gui-version = "PMI8950GUI - 2.0.0.16";
+	qcom,fg-profile-data = [
+		 E1 83 CF 7C
+		 1F 81 6D 77
+		 5B 83 21 67
+		 F2 83 E9 8E
+		 85 82 A1 93
+		 C0 B5 CF C1
+		 52 15 F3 83
+		 17 7D 4E 81
+		 BD 77 5C 83
+		 5D 59 DC 81
+		 20 8E 56 82
+		 B3 99 20 BD
+		 38 CA 55 0E
+		 36 0C C6 59
+		 14 70 B2 FD
+		 AA 36 07 45
+		 77 39 00 00
+		 05 46 AA 29
+		 FE 1A 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 8B 71 05 70
+		 EC 7D 9D 82
+		 60 7C 56 71
+		 FC 6F 2C 72
+		 07 75 07 69
+		 6D 6C 13 A2
+		 23 9B 61 C0
+		 5F A0 71 0C
+		 28 00 FF 36
+		 F0 11 30 03
+		 00 00 00 0C
+	];
+};

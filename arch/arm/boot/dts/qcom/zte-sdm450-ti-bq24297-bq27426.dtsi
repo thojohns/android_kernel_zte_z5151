@@ -1,0 +1,73 @@
+ /* Copyright (c) 2015, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+&i2c_2 {
+	bq24297-charger@6b {
+		compatible = "ti,charger,bq24297";
+		reg = <0x6b>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <59 0x0>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&int_pin_default &otg_pin_default>;
+		vdd-supply = <&pm8953_l3>;
+		qcom,vdd-voltage-level = <0 925000 925000>;
+		ti,irq-gpio = <&tlmm 9 0x00>;
+
+		ti,bq2429x,usb-vlim = <4520>;
+		ti,bq2429x,usb-ilim = <500>;
+		ti,bq2429x,usb-float-voltage-mv = <4400>;
+		ti,bq2429x,usb-ichg = <512>;
+		ti,bq2429x,ta-vlim = <4520>;
+		ti,bq2429x,ta-ilim = <2000>;
+		ti,bq2429x,ta-ichg = <2240>;
+		ti,bq2429x,ta-float-voltage-mv = <4400>;
+		ti,recharge-mv = <100>;
+		ti,bq2429x,software-jeita-supported;
+		ti,bq2429x,jeita-hot-degc = <600>;
+		ti,bq2429x,jeita-warm-degc = <450>;
+		ti,bq2429x,jeita-cool-degc = <100>;
+		ti,bq2429x,jeita-cold-degc = <50>;
+		ti,bq2429x,jeita-cool-ma = <896>;
+		ti,bq2429x,jeita-cool-mv = <4400>;
+		ti,bq2429x,jeita-warm-ma = <1024>;
+		ti,bq2429x,jeita-warm-mv = <4100>;
+		ti,bq2429x,jeita-cold-hysteresis = <20>;
+		ti,bq2429x,jeita-hot-hysteresis = <20>;
+		ti,bq2429x,thermal-mitigation = <2000 1500 1000 900>;
+		ti,bq2429x,precharge-current = <384>;
+		ti,bq2429x,termination-current = <128>;
+		ti,bq2429x,boost-volt = <4998>;
+		ti,bq2429x,boost-current = <1000>;
+		ti,bq2429x,enable_term;
+
+		bq2419x_otg_vreg: qcom,ti-boost-otg {
+			regulator-name = "bq2419x_otg_vreg";
+		};
+	};
+
+	bq27x00-battery@55 {
+		compatible = "ti,bq27x00-battery";
+		reg = <0x55>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <139 0x0>;
+		qcom,irq-gpio = <&tlmm 139 0x00>;
+
+		/*
+		pinctrl-names = "default";
+		pinctrl-0 = <&fg_int_active>;
+		*/
+
+		qcom,chg-vadc = <&pm8953_vadc>;
+		qcom,batt-id-vref-uv = <1800000>;
+		qcom,batt-id-rpullup-kohm = <100>;
+	};
+};

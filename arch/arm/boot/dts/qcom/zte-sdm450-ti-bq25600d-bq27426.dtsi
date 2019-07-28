@@ -1,0 +1,78 @@
+ /* Copyright (c) 2015, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+&i2c_2 {
+	bq25600-charger@6b {
+		compatible = "ti,charger,bq25600";
+		reg = <0x6b>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <59 0x0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&int_pin_default &otg_pin_default>;
+		vdd-supply = <&pm8953_l3>;
+		qcom,vdd-voltage-level = <0 925000 925000>;
+		/* ti,charge_enable-gpio = <&tlmm 3 0x00>; */
+		ti,irq-gpio = <&tlmm 9 0x00>;
+		ti,bq25600,usb-vlim = <4520>;
+		ti,bq25600,usb-ilim = <500>;
+		ti,bq25600,usb-vreg = <4400>;
+		ti,bq25600,usb-ichg = <480>;
+		ti,bq25600,dcp-vlim = <4520>;
+		ti,bq25600,dcp-ilim = <1600>;
+		ti,bq25600,dcp-vreg = <4400>;
+		ti,bq25600,dcp-ichg = <1740>;
+		ti,bq25600,cdp-vlim = <4520>;
+		ti,bq25600,cdp-ilim = <1500>;
+		ti,bq25600,cdp-vreg = <4400>;
+		ti,bq25600,cdp-ichg = <1500>;
+		ti,bq25600,precharge-current = <360>;
+		ti,bq25600,termination-current = <120>;
+		ti,bq25600,boost-voltage = <5000>;
+		ti,bq25600,boost-current = <1200>;
+		ti,bq25600,stat-pin-ctrl = <0>;
+		ti,bq25600,vac-ovp-threshold = <6500>;
+		ti,bq25600,jeita-hot-degc = <600>;
+		ti,bq25600,jeita-warm-degc = <450>;
+		ti,bq25600,jeita-cool-degc = <100>;
+		ti,bq25600,jeita-cool-degc-ext = <50>;
+		ti,bq25600,jeita-cold-degc = <0>;
+		ti,bq25600,jeita-warm-ma = <900>;
+		ti,bq25600,jeita-warm-mv = <4080>;
+		ti,bq25600,jeita-cool-ma = <900>;
+		ti,bq25600,jeita-cool-ma-ext = <300>;  /* 0 - 5 degC */
+		ti,bq25600,jeita-cool-mv = <4400>;
+		ti,bq25600,jeita-hot-hysteresis = <20>;
+		ti,bq25600,jeita-cold-hysteresis = <20>;
+		ti,bq25600,recharge-mv = <100>;
+		ti,bq25600,enable_term;
+		ti,bq25600,software-jeita-supported;
+		ti,bq25600,thermal-mitigation = <1600 1100 900 600>;
+
+		bq2419x_otg_vreg: qcom,ti-boost-otg {
+			regulator-name = "bq2419x_otg_vreg";
+		};
+	};
+
+	bq27x00-battery@55 {
+		compatible = "ti,bq27x00-battery";
+		reg = <0x55>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <139 0x0>;
+		qcom,irq-gpio = <&tlmm 139 0x00>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&fg_int_pin_default>;
+
+		qcom,chg-vadc = <&pm8953_vadc>;
+		qcom,batt-id-vref-uv = <1800000>;
+		qcom,batt-id-rpullup-kohm = <100>;
+	};
+};

@@ -1,0 +1,361 @@
+owners:
+- wang.xiaomei1@zte.com.cn
+- ding.xuehua@zte.com.cn
+- yang.yanpeng@zte.com.cn
+- yao.tierui@zte.com.cn
+- zhang.bo19@zte.com.cn
+- zeng.jie258@zte.com.cn
+matchers:
+- exact: drivers/gud
+  owners:
+  - chen.baoyu@zte.com.cn
+  - ge.tianyuan@zte.com.cn
+  - rui.jiagui@zte.com.cn
+- exact: drivers/Makefile
+  owners:
+  - chen.baoyu@zte.com.cn
+  - ge.tianyuan@zte.com.cn
+  - rui.jiagui@zte.com.cn
+- exact: drivers/Kconfig
+  owners:
+  - chen.baoyu@zte.com.cn
+  - ge.tianyuan@zte.com.cn
+  - rui.jiagui@zte.com.cn
+- regex: drivers/gud/.*
+  owners:
+  - chen.baoyu@zte.com.cn
+  - ge.tianyuan@zte.com.cn
+  - rui.jiagui@zte.com.cn
+- exact: arch/arm64/configs
+  owners:
+  - chen.baoyu@zte.com.cn
+  - ge.tianyuan@zte.com.cn
+  - rui.jiagui@zte.com.cn
+- exact: arch/arm/configs
+  owners:
+  - chen.baoyu@zte.com.cn
+  - ge.tianyuan@zte.com.cn
+  - rui.jiagui@zte.com.cn
+- exact: arch/arm64/boot/dts/qcom
+  owners:
+  - chen.baoyu@zte.com.cn
+  - ge.tianyuan@zte.com.cn
+  - rui.jiagui@zte.com.cn
+- exact: arch/arm/boot/dts/qcom
+  owners:
+  - chen.baoyu@zte.com.cn
+  - ge.tianyuan@zte.com.cn
+  - rui.jiagui@zte.com.cn
+- regex: include/.*
+  owners:
+  - yang.yanpeng@zte.com.cn
+- regex: arch/.*
+  owners:
+  - xiao.jianhua@zte.com.cn
+  - dou.mingming@zte.com.cn
+  - yang.yanpeng@zte.com.cn
+  - zhou.xuezan@zte.com.cn
+  - li.xinghe3@zte.com.cn
+- regex: driver/.*
+  owners:
+  - yang.yanpeng@zte.com.cn
+  - zhang.ji230@zte.com.cn
+- regex: drivers/video/.*
+  owners:
+  - qin.jing7@zte.com.cn
+- regex: drivers/input/.*
+  owners:
+  - qin.jing7@zte.com.cn
+- regex: drivers/soc/qcom/.*
+  owners:
+  - zhou.xuezan@zte.com.cn
+- exact: arch/arm64
+  owners:
+  - zhou.xuezan@zte.com.cn
+- regex: sound/soc/codecs/.*
+  owners:
+  - wu.jianxing@zte.com.cn
+  - zheng.xiaohong@zte.com.cn
+  - ding.lele@zte.com.cn
+  - xu.feng8@zte.com.cn
+- regex: drivers/power/.*
+  owners:
+  - zhou.teng@zte.com.cn
+  - wang.huacun@zte.com.cn
+  - ding.xuehua@zte.com.cn
+  - zhang.tianyu1@zte.com.cn
+  - che.lei@zte.com.cn
+  - cui.xiaochuan@zte.com.cn
+  - zheng.xiaohong@zte.com.cn
+  - wang.jianping3@zte.com.cn
+- exact: arm64/boot/dts/qcom
+  owners:
+  - wang.jianping3@zte.com.cn
+  - cui.xiaochuan@zte.com.cn
+  - jia.baofeng@zte.com.cn
+- regex: drivers/.*
+  owners:
+  - wang.jianping3@zte.com.cn
+  - cui.xiaochuan@zte.com.cn
+- exact: include/net/ipv6.h
+  owners:
+  - li.kai77@zte.com.cn
+  - fu.bing@zte.com.cn
+  - wang.qi71@zte.com.cn
+- exact: include/linux/inet.h
+  owners:
+  - li.kai77@zte.com.cn
+  - fu.bing@zte.com.cn
+  - wang.qi71@zte.com.cn
+- exact: net/core/utils.c
+  owners:
+  - li.kai77@zte.com.cn
+  - fu.bing@zte.com.cn
+  - wang.qi71@zte.com.cn
+- regex: net/ipv6/.*
+  owners:
+  - li.kai77@zte.com.cn
+  - fu.bing@zte.com.cn
+- regex: net/ipv4/.*
+  owners:
+  - li.kai77@zte.com.cn
+  - fu.bing@zte.com.cn
+- exact: net/ipv6/udp.c
+  owners:
+  - wang.qi71@zte.com.cn
+- exact: net/ipv6/tcp_ipv6.c
+  owners:
+  - wang.qi71@zte.com.cn
+- exact: net/ipv6/ip6_output.c
+  owners:
+  - wang.qi71@zte.com.cn
+- exact: net/ipv6/ip6_input.c
+  owners:
+  - wang.qi71@zte.com.cn
+- exact: net/ipv4/udp.c
+  owners:
+  - wang.qi71@zte.com.cn
+- exact: net/ipv4/tcp_output.c
+  owners:
+  - wang.qi71@zte.com.cn
+- exact: net/ipv4/tcp_ipv4.c
+  owners:
+  - wang.qi71@zte.com.cn
+- exact: net/ipv4/tcp_input.c
+  owners:
+  - wang.qi71@zte.com.cn
+- exact: net/ipv4/ip_output.c
+  owners:
+  - wang.qi71@zte.com.cn
+- exact: net/ipv4/ip_input.c
+  owners:
+  - wang.qi71@zte.com.cn
+- regex: kernel/.*
+  owners:
+  - cao.yaobinxa@zte.com.cn
+  - yuan.bo12@zte.com.cn
+- regex: security/.*
+  owners:
+  - cao.yaobinxa@zte.com.cn
+- regex: arch/arm/boot/dts/qcom/.*
+  owners:
+  - zhang.zhao@zte.com.cn
+  - che.lei@zte.com.cn
+  - li.qiang279@zte.com.cn
+  - yang.chaofeng@zte.com.cn
+  - zheng.xiaohong@zte.com.cn
+- regex: drivers/video/msm/mdss/.*
+  owners:
+  - zhang.zhao@zte.com.cn
+  - yang.chaofeng@zte.com.cn
+- regex: drivers/input/fingerprint/.*
+  owners:
+  - zhang.zhao@zte.com.cn
+  - chen.hui11@zte.com.cn
+  - ping.zhenghai@zte.com.cn
+  - zhang.chunfa@zte.com.cn
+- regex: drivers/input/misc/.*
+  owners:
+  - zhang.zhao@zte.com.cn
+  - chen.hui11@zte.com.cn
+- regex: drivers/input/touchscreen/.*
+  owners:
+  - zhang.zhao@zte.com.cn
+  - zhang.jian43@zte.com.cn
+  - ping.zhenghai@zte.com.cn
+  - wang.kuihua@zte.com.cn
+  - chen.zhiguang321@zte.com.cn
+- regex: block/.*
+  owners:
+  - ye.ganlin@zte.com.cn
+  - xiong.ping@zte.com.cn
+- regex: drivers/scsi/ufs/.*
+  owners:
+  - ye.ganlin@zte.com.cn
+  - xiong.ping@zte.com.cn
+- regex: drivers/mmc/.*
+  owners:
+  - zhang.chunfa@zte.com.cn
+  - ye.ganlin@zte.com.cn
+  - xiong.ping@zte.com.cn
+- regex: fs/.*
+  owners:
+  - xiong.ping@zte.com.cn
+- regex: drivers/leds/* 
+  owners:
+  - li.qiang279@zte.com.cn
+- regex: drivers/nfc/.*
+  owners:
+  - jiang.haitao15@zte.com.cn
+  - bao.jian@zte.com.cn
+- regex: drivers/tty/serial/.*
+  owners:
+  - jiang.haitao15@zte.com.cn
+  - xu.mei2@zte.com.cn
+- regex: drivers/bluetooth/.*
+  owners:
+  - jiang.haitao15@zte.com.cn
+  - xu.mei2@zte.com.cn
+- regex: drivers/usb/.*
+  owners:
+  - zhang.chunfa@zte.com.cn
+  - liu.lu67@zte.com.cn
+  - zhang.jing23@zte.com.cn
+- regex: techpack/audio/.*
+  owners:
+  - wei.guohua@zte.com.cn
+  - xiao.lei6@zte.com.cn
+- regex: sound/.*
+  owners:
+  - wei.guohua@zte.com.cn
+  - xiao.lei6@zte.com.cn
+- regex: drivers/char/diag/.*
+  owners:
+  - liu.lu67@zte.com.cn
+  - liu.hongyan55@zte.com.cn
+- regex: security/selinux/.*
+  owners:
+  - jia.jia@zte.com.cn
+- exact: drivers/power/bq27426_fg.c
+  owners:
+  - zhou.teng@zte.com.cn
+- exact: drivers/power/zte_bq25601_comm_charger.c
+  owners:
+  - zhou.teng@zte.com.cn
+- exact: drivers/power/bq2560x_charger_chip.c
+  owners:
+  - zhou.teng@zte.com.cn
+- regex: drivers/media/radio/.*
+  owners:
+  - jiang.haitao15@zte.com.cn
+  - xu.bingbing@zte.com.cn
+- exact: drivers/input/touchscreen/novatek_touch
+  owners:
+  - hu.nan1@zte.com.cn
+- regex: drivers/video/msm/mdss/*
+  owners:
+  - yang.chaofeng@zte.com.cn
+- exact: include/uapi/linux/input.h
+  owners:
+  - chen.hui11@zte.com.cn
+  - chen.zhiguang321@zte.com.cn
+  - wang.kuihua@zte.com.cn
+  - ping.zhenghai@zte.com.cn
+- exact: include/linux/power_supply.h
+  owners:
+  - ding.xuehua@zte.com.cn
+  - wang.huacun@zte.com.cn
+  - zhang.tianyu1@zte.com.cn
+- exact: drivers/of/of_batterydata.c
+  owners:
+  - ding.xuehua@zte.com.cn
+  - wang.huacun@zte.com.cn
+  - zhang.tianyu1@zte.com.cn
+- regex: drivers/input/ztemisc/.*
+  owners:
+  - chen.hui11@zte.com.cn
+- regex: drivers/rtc/.*
+  owners:
+  - zhang.chunfa@zte.com.cn
+- exact: drivers/input/keyboard/gpio_keys.c
+  owners:
+  - zhang.chunfa@zte.com.cn
+- exact: arch/arm66/configs/msmcortex- perf- blaze_defconfig
+  owners:
+  - zhang.chunfa@zte.com.cn
+- exact: arch/arm65/configs/msmcortex- perf- copper_defconfig
+  owners:
+  - zhang.chunfa@zte.com.cn
+- exact: arch/arm64/configs/msmcortex- perf- yearn_defconfig
+  owners:
+  - zhang.chunfa@zte.com.cn
+- exact: arch/arm/boot/dts/qcom/zte- sdm450- yearn.dtsi
+  owners:
+  - zhang.chunfa@zte.com.cn
+- exact: arch/arm/boot/dts/qcom/zte- sdm450- copper.dtsi
+  owners:
+  - zhang.chunfa@zte.com.cn
+- exact: arch/arm/boot/dts/qcom/zte- sdm450- blaze.dtsi
+  owners:
+  - zhang.chunfa@zte.com.cn
+- regex: drivers/power/reset/.*
+  owners:
+  - dou.mingming@zte.com.cn
+- regex: drivers/leds/.*
+  owners:
+  - dou.mingming@zte.com.cn
+  - li.qiang279@zte.com.cn
+- regex: drivers/platform/msm/.*
+  owners:
+  - dou.mingming@zte.com.cn
+- exact: drivers/power
+  owners:
+  - jia.baofeng@zte.com.cn
+- regex: drivers/power/bqfs_file/.*
+  owners:
+  - che.lei@zte.com.cn
+  - zheng.xiaohong@zte.com.cn
+- regex: arch/arm64/configs/.*
+  owners:
+  - wu.jianxing@zte.com.cn
+  - zheng.xiaohong@zte.com.cn
+  - ding.lele@zte.com.cn
+  - che.lei@zte.com.cn
+- regex: driver/video/msm/.*
+  owners:
+  - gao.yuan256@zte.com.cn
+  - zheng.xiaohong@zte.com.cn
+- regex: driver/input/touchscreen/.*
+  owners:
+  - gao.yuan256@zte.com.cn
+  - zheng.xiaohong@zte.com.cn
+- regex: sound/soc/msm/qdsp6v2/.*
+  owners:
+  - wu.jianxing@zte.com.cn
+  - ding.lele@zte.com.cn
+  - zheng.xiaohong@zte.com.cn
+- regex: arch/arm/boot/qcom/.*
+  owners:
+  - wu.jianxing@zte.com.cn
+  - ding.lele@zte.com.cn
+  - zheng.xiaohong@zte.com.cn
+- regex: fs/f2fs/.*
+  owners:
+  - chen.shaohua3@zte.com.cn
+  - ye.ganlin@zte.com.cn
+  - li.liang6@zte.com.cn
+- exact: drivers/platform/msm/zte- vibrator.c
+  owners:
+  - li.qiang279@zte.com.cn
+- regex: kernel/printk/.*
+  owners:
+  - zhang.jiahao@zte.com.cn
+  - he.zhibin@zte.com.cn
+  - zhang.yuanyuan15@zte.com.cn
+  - jiang.zhifeng1@zte.com.cn
+- regex: kernel/power/.*
+  owners:
+  - zhang.jiahao@zte.com.cn
+  - he.zhibin@zte.com.cn
+  - zhang.yuanyuan15@zte.com.cn
+  - jiang.zhifeng1@zte.com.cn

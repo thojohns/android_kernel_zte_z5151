@@ -1,0 +1,9 @@
+config FINGERPRINT_SILEAD_6153E
+  tristate "SILEAD 6153E fingerprint drvier support"
+  default n
+config FINGERPRINT_SILEAD_NO_FINGERID
+  tristate "SILEAD 6153E fingerprint drvier support"
+  default n
+config FINGERPRINT_SILEAD_NAVI
+  tristate "SILEAD 6153E fingerprint drvier support"
+  default n

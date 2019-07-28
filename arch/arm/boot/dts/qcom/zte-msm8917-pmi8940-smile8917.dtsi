@@ -1,0 +1,956 @@
+/*
+ * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+//#include "dsi-panel-hx8399c-lead-1080p-video.dtsi" /*add by yujianhua for V8*/
+#include "smile8917/zte-dsi-panel-skyworth-ili9881c-720p-video.dtsi"
+#include "smile8917/zte-dsi-panel-lead-hx8394f-720p-video.dtsi"
+#include "smile8917/zte-dsi-panel-xinli-otm1290a-5p45-720p-video.dtsi"
+#include "smile8917/zte-dsi-panel-helitech-st7703-720p-video.dtsi"
+#include "smile8917/zte-dsi-panel-lianchuang-jd9365d-720p-video.dtsi"
+#include "smile8917/zte-dsi-panel-dijing-panda-ili9881p-720p-video.dtsi"
+#include "smile8917/zte-dsi-panel-holitech-boe-st7703-720p-video.dtsi"
+#include "smile8917/zte-dsi-panel-skyworth-boe-st7703-720p-video.dtsi"
+#include "msm8937-regulator.dtsi"
+/*zte add for charger && fg start*/
+
+&pm8937_mpps {
+		mpp@a100 {
+		/* MPP2 - BATT_ID config */
+		reg = <0xa100 0x100>;
+		qcom,pin-num = <2>;
+		qcom,mode = <4>; /* AIN input */
+		qcom,ain-route = <1>; /* AMUX 6 */
+		qcom,master-en = <1>;
+		qcom,src-sel = <0>; /* Function constant */
+		/delete-property/qcom,invert;
+		};
+};
+
+&pm8937_vadc {
+		chan@11 {
+		label = "mpp2_adc";
+		reg = <0x11>;
+		qcom,decimation = <0>;
+		qcom,pre-div-channel-scaling = <0>;
+		qcom,calibration-type = "absolute";
+		qcom,scale-function = <0>;
+		qcom,hw-settle-time = <1>;
+		qcom,fast-avg-setup = <2>;
+		/delete-property/qcom,vadc-thermal-node;
+	};
+};
+
+&i2c_2 {
+	bq24297-charger@6b {
+		compatible = "ti,charger,bq24297";
+		reg = <0x6b>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <61 0x0>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&int_pin_default &otg_pin_default>;
+
+		ti,irq-gpio = <&tlmm 63 0x00>;
+
+		ti,bq2429x,usb-vlim = <4520>;
+		ti,bq2429x,usb-ilim = <512>;
+		ti,bq2429x,usb-float-voltage-mv = <4400>;
+		ti,bq2429x,usb-ichg = <512>;
+
+		ti,bq2429x,cdp-vlim = <4520>;
+		ti,bq2429x,cdp-ilim = <1500>;
+		ti,bq2429x,cdp-ichg = <1216>;
+		ti,bq2429x,cdp-float-voltage-mv = <4352>;
+
+		ti,bq2429x,ta-vlim = <4520>;
+		ti,bq2429x,ta-ilim = <2000>;
+		ti,bq2429x,ta-ichg = <2048>;
+		ti,bq2429x,ta-float-voltage-mv = <4400>;
+
+		ti,recharge-mv = <300>;
+
+		ti,bq2429x,software-jeita-supported;
+		ti,bq2429x,jeita-hot-degc = <600>;
+		ti,bq2429x,jeita-warm-degc = <450>;
+		ti,bq2429x,jeita-cool-degc = <150>;
+		ti,bq2429x,jeita-cold-degc = <0>;
+		ti,bq2429x,jeita-cool-ma = <600>;
+		ti,bq2429x,jeita-cool-mv = <4400>;
+		ti,bq2429x,jeita-warm-ma = <600>;
+		ti,bq2429x,jeita-warm-mv = <4100>;
+		ti,bq2429x,jeita-cold-hysteresis = <20>;
+		ti,bq2429x,jeita-hot-hysteresis = <20>;
+		ti,bq2429x,thermal-mitigation = <2048 1408 1024 640>;
+
+		ti,bq2429x,precharge-current = <384>;
+		ti,bq2429x,termination-current = <128>;
+		ti,bq2429x,boost-volt = <4998>;
+		ti,bq2429x,boost-current = <1000>;
+		//ti,bq2429x,enable_term;
+
+		//--------------------------fot ti bq25601 compatible---------------------------------------
+		//ti,charge_enable-gpio = <&tlmm 8 0x00>;
+		/*light add note:*/
+		/*ichg:battery charging current*/
+		/*vreg:battery float voltage*/
+		/*ilim:charging input current*/
+		/*vlim:input voltage*/
+
+		ti,bq2560x,usb-vlim = <4520>;
+		ti,bq2560x,usb-ilim = <500>;
+		ti,bq2560x,usb-vreg = <4400>;
+		ti,bq2560x,usb-ichg = <500>;
+
+		ti,bq2560x,cdp-vlim = <4520>;
+		ti,bq2560x,cdp-ilim = <1500>;
+		ti,bq2560x,cdp-vreg = <4400>;
+		ti,bq2560x,cdp-ichg = <2000>;
+
+		ti,bq2560x,ta-vlim = <4520>;
+		ti,bq2560x,ta-ilim = <1500>;
+		ti,bq2560x,ta-vreg = <4400>;
+		ti,bq2560x,ta-ichg = <2000>;
+
+		ti,bq2560x,precharge-current = <384>;
+		ti,bq2560x,termination-current = <128>;
+		ti,bq2560x,boost-voltage = <4998>;
+		ti,bq2560x,boost-current = <1200>;
+
+		ti,bq2560x,stat-pin-ctrl = <0>;
+		ti,bq2560x,vac-ovp-threshold = <6200>;
+
+		ti,bq2560x,jeita-hot-degc = <550>;
+		ti,bq2560x,jeita-warm-degc = <450>;
+		ti,bq2560x,jeita-cool-degc = <100>;
+		ti,bq2560x,jeita-cooler-degc = <50>;
+		ti,bq2560x,jeita-cold-degc = <10>;
+
+		ti,bq2560x,jeita-hot-hysteresis = <50>;
+		ti,bq2560x,jeita-cold-hysteresis = <20>;
+
+		ti,bq2560x,jeita-cooler-ma = <300>;
+		ti,bq2560x,jeita-cool-ma = <900>;
+		ti,bq2560x,jeita-cool-mv = <4400>;
+		ti,bq2560x,jeita-warm-ma = <1000>;
+		ti,bq2560x,jeita-warm-mv = <4100>;
+
+		ti,bq2560x,recharge-mv = <100>;
+
+		ti,bq2560x,enable_term;
+		/*ti,bq2560x,enable_soc_term_charge;*/
+		ti,bq2560x,software-jeita-supported;
+		ti,bq2560x,thermal-mitigation = <1500 1000 700 500 300 0>;
+		smbcharger_charger_otg: qcom,smb358-boost-otg {
+				regulator-name = "smb358_charger_otg";
+		};
+	};
+
+	bq27x00-battery@55 {
+		compatible = "ti,bq27426";
+		reg = <0x55>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <1 0x0>;
+		qcom,irq-gpio = <&tlmm 1 0x00>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&fg_int_active>;
+
+		qcom,batt_id-vadc = <&pm8937_vadc>;
+		qcom,batt-id-vref-uv = <1800000>;
+		qcom,batt-id-rpullup-kohm = <100>;
+		qcom,batt_full_design_capacity = <3200>;
+	};
+};
+/*zte add for charger && fg start*/
+
+
+&i2c_3 { /* BLSP1 QUP3 */
+
+	focaltech@38{
+		compatible = "focaltech,fts_ts";
+		reg = <0x38>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <65 0x2>;
+		vdd-supply = <&pm8917_l17>;
+		vcc_i2c-supply = <&pm8917_l6>;
+		pinctrl-names = "pmx_ts_active", "pmx_ts_suspend";
+		pinctrl-0 = <&ts_int_active &ts_reset_active>;
+		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+		focaltech,reset-gpio = <&tlmm 64 0x0>;
+		focaltech,irq-gpio = <&tlmm 65 0x2002>;
+		focaltech,display-coords = <0 0 720 1440>;
+		focaltech,max-touch-number = <5>;
+		focaltech,edge_limit_x_width = <4>;
+		focaltech,edge_limit_y_width = <4>;
+		};
+};
+
+&soc {
+	/*zte for fingerprint start*/
+	silead {
+		status = "ok";
+		reg = <0>;
+		compatible = "silead,silead_fp";
+		interrupt-parent = <&tlmm>;
+		interrupts = <97 0x0>;
+
+		pinctrl-names = "silead_active", "silead_suspend", "silead_irq", "pwr_active", "finger_id_np";
+		pinctrl-0 = <&fp_shutdown_active>;
+		pinctrl-1 = <&fp_shutdown_suspend>;
+		pinctrl-2 = <&silead_irq_active>;
+		pinctrl-3 = <&silead_pwr_active>;
+		pinctrl-4 = <&finger_id_np>;
+
+		silead,gpio_reset = <&tlmm 98 0>;
+		silead,gpio_irq = <&tlmm 97 0>;
+		silead,gpio_pwr = <&tlmm 95 0>;
+		interrupt-names = "sl_wake_up";
+	};
+	goodix_fp {
+		status = "ok";
+		reg = <0>;
+		compatible = "goodix,fingerprint";
+		interrupt-parent = <&tlmm>;
+		interrupts = <97 0x0>;
+
+		pinctrl-names = "goodix_active", "goodix_suspend", "goodix_irq", "pwr_active";
+		pinctrl-0 = <&fp_shutdown_active>;
+		pinctrl-1 = <&fp_shutdown_suspend>;
+		pinctrl-2 = <&goodix_irq_active>;
+		pinctrl-3 = <&goodix_pwr_active>;
+
+		fp-gpio-reset = <&tlmm 98 0>;
+		fp-gpio-irq = <&tlmm 97 0>;
+		goodix,gpio_pwr = <&tlmm 95 0>;
+		interrupt-names = "goodix_wake_up";
+	};
+	zte_misc {
+		compatible = "zte-misc";
+	};
+	/*zte for fingerprint end*/
+
+	/* added by zte_fangjun for color_led,start */
+	gpio_leds {
+		compatible = "gpio-modem-leds";
+		status = "okay";
+		pinctrl-names = "default";
+		pinctrl-0 = <&gpio_led_off>;
+		qcom,red-led = <&tlmm 125 0x1>;
+		qcom,green-led = <&tlmm 124 0x1>;
+		/*qcom,trickle_red-led = <&tlmm 3 0x1>;*/
+		qcom,blink-on-time = <500>;
+		qcom,blink-off-time = <1500>;
+	};
+	/* added by zte_sw_fangjun for color_led,end */
+
+	gpio_keys {
+		compatible = "gpio-keys";
+		input-name = "gpio-keys";
+		pinctrl-names = "tlmm_gpio_key_active","tlmm_gpio_key_suspend";
+		pinctrl-0 = <&gpio_key_active>;
+		pinctrl-1 = <&gpio_key_suspend>;
+		vol_up {
+			label = "volume_up";
+			gpios = <&tlmm 91 0x1>;
+			linux,input-type = <1>;
+			linux,code = <115>;
+			debounce-interval = <15>;
+		};
+		vol_down {
+			label = "volume_down";
+			gpios = <&tlmm 127 0x1>;
+			linux,input-type = <1>;
+			linux,code = <114>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+		camera_snapshot {
+		/delete-property/ label;
+		/delete-property/ gpios;
+		/delete-property/ linux,input-type;
+		/delete-property/ linux,code;
+		/delete-property/ debounce-interval;
+		};
+		camera_focus {
+		/delete-property/ label;
+		/delete-property/ gpios;
+		/delete-property/ linux,input-type;
+		/delete-property/ linux,code;
+		/delete-property/ debounce-interval;
+		};
+	};
+	zte_vibrator {
+		compatible = "zte_vibrator";
+		zte,motor_en_gpio = <&tlmm 47 0x0>;
+		linux,output-type = <0>;
+	};
+};
+
+/*zteadd by yujianhua for lcm F10 start*/
+&soc {
+	lcd_iovdd: lcd_iovdd {
+		status = "disabled";
+		compatible = "regulator-fixed";
+		regulator-name = "lcd_iovdd";
+		gpio = <&tlmm 65 0>;/*must be set gpio pin num*/
+		enable-active-high;
+		regulator-boot-on;
+	};
+
+	lcd_avdd: lcd_avdd {
+		status = "disabled";
+		compatible = "regulator-fixed";
+		regulator-name = "lcd_avdd";
+		gpio = <&tlmm 70 0>;/*must be set gpio pin num*/
+		enable-active-high;
+		regulator-boot-on;
+	};
+
+	lcd_vsp: lcd_vsp {
+		status = "okay";
+		compatible = "regulator-fixed";
+		regulator-name = "lcd_vsp";
+		gpio = <&tlmm 12 0>;/*must be set gpio pin num*/
+		enable-active-high;
+		regulator-boot-on;
+	};
+
+	lcd_vsn: lcd_vsn {
+		status = "okay";
+		compatible = "regulator-fixed";
+		regulator-name = "lcd_vsn";
+		gpio = <&tlmm 35 0>;/*must be set gpio pin num*/
+		enable-active-high;
+		regulator-boot-on;
+	};
+	qcom,cci@1b0c000 {
+	/delete-node/ qcom,eeprom@0;
+	/delete-node/ qcom,camera@0;
+	};
+};
+&dsi_panel_pwr_supply {
+	/delete-node/qcom,panel-supply-entry@0;
+	qcom,panel-supply-entry@2 {
+		reg = <0x2>;
+		/*qcom,supply-name = "ldo-iovdd";*/
+		qcom,supply-name = "lcd_vsp";
+		qcom,supply-min-voltage = <0>;
+		qcom,supply-max-voltage = <0>;
+		qcom,supply-enable-load = <0>;
+		qcom,supply-disable-load = <0>;
+		qcom,supply-pre-on-sleep = <5>;
+		qcom,supply-post-on-sleep = <1>;
+		qcom,supply-pre-off-sleep = <1>;
+		qcom,supply-post-off-sleep = <1>;
+	};
+
+	qcom,panel-supply-entry@3 {
+		reg = <0x3>;
+		/*qcom,supply-name = "ldo-avdd";*/
+		qcom,supply-name = "lcd_vsn";
+		qcom,supply-min-voltage = <0>;
+		qcom,supply-max-voltage = <0>;
+		qcom,supply-enable-load = <0>;
+		qcom,supply-disable-load = <0>;
+		qcom,supply-pre-on-sleep = <1>;
+		qcom,supply-post-on-sleep = <1>;
+		qcom,supply-pre-off-sleep = <1>;
+		qcom,supply-post-off-sleep = <1>;
+	};
+};
+&mdss_dsi0 {
+	qcom,dsi-pref-prim-pan = <&dsi_skyworth_ili9881c_720p_video>;
+	/* zte,disp_vsp_en_gpio = <&tlmm 12 0x00>; */
+	/* zte,disp_vsn_en_gpio = <&tlmm 35 0x00>; */
+	/*ldo-avdd-supply = <&lcd_avdd>;*/
+	/*ldo-iovdd-supply = <&lcd_iovdd>;*/
+	lcd-vsp-supply = <&lcd_vsp>;
+	lcd-vsn-supply = <&lcd_vsn>;
+	/delete-property/ qcom,platform-enable-gpio;
+	/delete-property/ qcom,platform-bklight-en-gpio;
+};
+&i2c_2 {
+	ti65132b@3e {
+		compatible = "tps,ti65132b";
+		reg = <0x3e>;
+	};
+};
+&cci {
+};
+/*zteadd by yujianhua for lcm F10 end*/
+
+&i2c_3 { /* BLSP1 QUP3 */
+	status = "ok";
+};
+/*zteadd by yujianhua for lcm F10 reset pin start*/
+&pmx_mdss {
+	mdss_dsi_active: mdss_dsi_active {
+		mux {
+			pins = "gpio60";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio60";
+			drive-strength = <8>; /* 8 mA */
+			bias-disable = <0>; /* no pull */
+			output-high;
+		};
+	};
+	mdss_dsi_suspend: mdss_dsi_suspend {
+		mux {
+			pins = "gpio60";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio60";
+			drive-strength = <2>; /* 8 mA */
+			bias-pull-down;
+			input-enable;
+		};
+	};
+};
+/*zteadd by yujianhua for lcm F10 reset pin end*/
+&soc {
+	int_codec: sound {
+		status = "okay";
+		qcom,msm-mbhc-hphl-swh = <1>;
+		qcom,msm-mbhc-gnd-swh = <1>;
+		qcom,msm-hs-micbias-type = "internal";
+		zte,speaker-mode-switch-gpios = <&tlmm 68 0x0>;
+		qcom,audio-routing =
+			"RX_BIAS", "MCLK",
+			"SPK_RX_BIAS", "MCLK",
+			"INT_LDO_H", "MCLK",
+			"MIC BIAS External", "Handset Mic",
+			"MIC BIAS Internal2", "Headset Mic",
+			"MIC BIAS External", "Secondary Mic",
+			"AMIC1", "MIC BIAS External",
+			"AMIC2", "MIC BIAS Internal2",
+			"AMIC3", "MIC BIAS External";
+			/* WSA_SPK OUT", "VDD_WSA_SWITCH", */
+			/* "SpkrMono WSA_IN", "WSA_SPK OUT"; */
+		qcom,msm-gpios =
+			"pri_i2s";
+		qcom,pinctrl-names =
+			"all_off",
+			"pri_i2s_act";
+		pinctrl-names =
+			"all_off",
+			"pri_i2s_act";
+		pinctrl-0 = <&cdc_pdm_lines_sus
+				&cdc_pdm_lines_2_sus>;
+		pinctrl-1 = <&cdc_pdm_lines_act
+				&cdc_pdm_lines_2_act>;
+			/delete-property/ pinctrl-2;
+			/delete-property/ pinctrl-3;
+			/delete-property/ pinctrl-4;
+			/delete-property/ pinctrl-5;
+			/delete-property/ pinctrl-6;
+			/delete-property/ pinctrl-7;
+			/delete-property/ qcom,hdmi-dba-codec-rx;
+			/delete-property/ qcom,cdc-us-euro-gpios;
+	};
+	i2c@78b6000 {
+		pericom-type-c@1d{
+			status = "disabled";
+		};
+	};
+
+	hall_sensor {
+		compatible = "ah,hall_ic";
+		ah,gpio_irq = <&tlmm 41 0x00>;
+		linux,name = "hall_sensor";
+	};
+};
+&tlmm {
+		fp_shutdown_active:active{
+				mux{
+					pins = "gpio98";
+					function = "gpio";
+				};
+				config{
+					pins = "gpio98";
+					drive-strength = <6>;
+					output-high;
+					bias-disable = <0>;
+				};
+		};
+		fp_shutdown_suspend:suspend{
+				mux{
+					pins = "gpio98";
+					function = "gpio";
+				};
+				config{
+					pins = "gpio98";
+					drive-strength = <2>;
+					output-low;
+					bias-disable = <0>;
+				};
+		};
+		silead_irq_active:irq_active{
+				mux{
+					pins = "gpio97";
+					function = "gpio";
+				};
+				config{
+					pins = "gpio97";
+					drive-strength = <2>;
+					bias-pull-down;
+				};
+		};
+		silead_pwr_active: silead_pwr_active {
+				mux{
+					pins = "gpio95";
+					function = "gpio";
+				};
+				config {
+					pins = "gpio95";
+					drive-strength = <2>;
+					bias-disable;
+					output-high;
+			};
+		};
+		finger_id_np: finger_id_np {
+				mux{
+					pins = "gpio96";
+					function = "gpio";
+				};
+				config {
+					pins = "gpio96";
+					drive-strength = <2>;
+					bias-disable = <0>;
+			};
+		};
+		goodix_irq_active:irq_active{
+				mux{
+					pins = "gpio97";
+					function = "gpio";
+				};
+				config{
+					pins = "gpio97";
+					drive-strength = <2>;
+					bias-pull-down;
+				};
+		};
+		goodix_pwr_active: goodix_pwr_active {
+				mux{
+					pins = "gpio95";
+					function = "gpio";
+				};
+				config {
+					pins = "gpio95";
+					drive-strength = <2>;
+					bias-disable;
+					output-high;
+			};
+		};
+
+		pmx_fg_int_active {
+			fg_int_active: fg_int_active {
+				mux {
+					pins = "gpio9";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio9";
+					drive-strength = <2>;
+					bias-pull-up;
+				};
+			};
+		};
+
+		pmx_charger_pin_default {
+			int_pin_default: int_pin_default {
+				mux {
+					pins = "gpio61";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio61";
+					drive-strength = <2>;
+					bias-pull-up;
+				};
+			};
+
+			otg_pin_default: otg_pin_default {
+				mux {
+					pins = "gpio63";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio63";
+					drive-strength = <2>;
+					bias-pull-up;
+				};
+			};
+		};
+
+/* added by zte_fangjun for color_led,start */
+	gpio_led_pins {
+		gpio_led_off: gpio_led_off {
+			mux {
+				pins = "gpio124", "gpio125";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio124", "gpio125";
+				drive-strength = <2>;
+				bias-disable;
+				output-low;
+			};
+		};
+	};
+	/*ZTE yuxin add for P840S18 camera gpios 20180124++*/
+	cam_sensor_mclk0_default: cam_sensor_mclk0_default {
+			/* MCLK0 */
+			mux {
+				/* CLK, DATA */
+				pins = "gpio26";
+				function = "cam_mclk";
+			};
+
+			config {
+				pins = "gpio26";
+				bias-disable; /* No PULL */
+				drive-strength = <4>; /* 2 MA */
+			};
+		};
+
+		cam_sensor_mclk0_sleep: cam_sensor_mclk0_sleep {
+			/* MCLK0 */
+			mux {
+				/* CLK, DATA */
+				pins = "gpio26";
+				function = "cam_mclk";
+			};
+
+			config {
+				pins = "gpio26";
+				bias-pull-down; /* PULL DOWN */
+				drive-strength = <4>; /* 2 MA */
+			};
+		};
+
+		cam_sensor_rear_default: cam_sensor_rear_default {
+			/* RESET, STANDBY */
+			mux {
+				pins = "gpio36";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio36";
+				bias-disable; /* No PULL */
+				drive-strength = <2>; /* 2 MA */
+			};
+		};
+
+		cam_sensor_rear_sleep: cam_sensor_rear_sleep {
+			/* RESET, STANDBY */
+			mux {
+				pins = "gpio36";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio36";
+				bias-disable; /* No PULL */
+				drive-strength = <2>; /* 2 MA */
+			};
+		};
+
+		cam_sensor_rear_vdig: cam_sensor_rear_vdig {
+			/* VDIG */
+			mux {
+				pins = "gpio132";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio132";
+				bias-disable; /* No PULL */
+				drive-strength = <2>; /* 2 MA */
+			};
+		};
+
+		cam_sensor_rear_vdig_sleep: cam_sensor_rear_vdig_sleep {
+			/* VDIG */
+			mux {
+				pins = "gpio132";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio132";
+				bias-disable; /* No PULL */
+				drive-strength = <2>; /* 2 MA */
+			};
+		};
+		cam_sensor_mclk2_default: cam_sensor_mclk2_default {
+			/* MCLK2 */
+			mux {
+				/* CLK, DATA */
+				pins = "gpio28";
+				function = "cam_mclk";
+			};
+
+			config {
+				pins = "gpio28";
+				bias-disable; /* No PULL */
+				drive-strength = <4>; /* 2 MA */
+			};
+		};
+
+		cam_sensor_mclk2_sleep: cam_sensor_mclk2_sleep {
+			/* MCLK2 */
+			mux {
+				/* CLK, DATA */
+				pins = "gpio28";
+				function = "cam_mclk";
+			};
+
+			config {
+				pins = "gpio28";
+				bias-pull-down; /* PULL DOWN */
+				drive-strength = <4>; /* 2 MA */
+			};
+		};
+
+		cam_sensor_front1_default: cam_sensor_front1_default {
+			/* RESET, STANDBY */
+			mux {
+				pins = "gpio40", "gpio39";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio40", "gpio39";
+				bias-disable; /* No PULL */
+				drive-strength = <2>; /* 2 MA */
+			};
+		};
+
+		cam_sensor_front1_sleep: cam_sensor_front1_sleep {
+			/* RESET, STANDBY */
+			mux {
+				pins = "gpio40", "gpio39";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio40", "gpio39";
+				bias-disable; /* No PULL */
+				drive-strength = <2>; /* 2 MA */
+			};
+		};
+		cam_sensor_front1_vdig: cam_sensor_front1_vdig {
+			/* VDIG */
+			mux {
+				pins = "gpio62";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio62";
+				bias-disable; /* No PULL */
+				drive-strength = <2>; /* 2 MA */
+			};
+		};
+
+		cam_sensor_front1_vdig_sleep: cam_sensor_front1_vdig_sleep {
+			/* VDIG */
+			mux {
+				pins = "gpio62";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio62";
+				bias-disable; /* No PULL */
+				drive-strength = <2>; /* 2 MA */
+			};
+		};
+	/*ZTE yuxin add for P840S18 camera gpios 20180124--*/
+	/*added for SAR IC sx9325, begin*/
+	sx9310_int_active: sx9310_int_active {
+		mux {
+			pins = "gpio90";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio90";
+			drive-strength = <8>;
+			bias-disable;
+			input-enable;
+		};
+	};
+	sx9310_int_suspend: sx9310_int_suspend {
+		mux {
+			pins = "gpio90";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio90";
+			drive-strength = <8>;
+			bias-disable;
+			input-enable;
+		};
+	};
+/*end*/
+};
+
+/*ZTE FINGERPRINT modify for gpio setting mistakely start*/
+&usbc_int_default {
+	mux {
+		pins = "gpio131";
+		function = "gpio";
+	};
+
+	config {
+		pins = "gpio131";
+		drive-strength = <2>;
+		bias-pull-up;
+	};
+};
+
+&wsa_vi_on {
+	mux {
+		pins = "gpio94";
+		function = "wsa_io";
+	};
+
+	config {
+		pins = "gpio94";
+		drive-strength = <8>; /* 8 MA */
+		bias-disable; /* NO pull */
+	};
+};
+
+&wsa_vi_off {
+	mux {
+		pins = "gpio94";
+		function = "wsa_io";
+	};
+
+	config {
+		pins = "gpio94";
+		drive-strength = <2>; /* 2 MA */
+		bias-pull-down;
+	};
+};
+/*ZTE FINGERPRINT modify for gpio setting mistakely end*/
+
+/* added by zte_fangjun for color_led,end */
+&spmi_bus {
+	/delete-node/qcom,pmi8940@2;
+	/delete-node/qcom,pmi8940@3;
+};
+
+&led_flash0 {
+	/delete-property/qcom,flash-source;
+	/delete-property/qcom,torch-source;
+	/delete-property/qcom,switch-source;
+};
+
+&mdss_dsi0 {
+	/delete-property/lab-supply;
+	/delete-property/ibb-supply;
+};
+
+/*
+&mdss_dsi1 {
+	/delete-property/lab-supply;
+	/delete-property/ibb-supply;
+};
+*/
+
+&i2c_5 {
+	/delete-node/nq@28;
+};
+&i2c_5 {
+	pn5xx@28{
+		compatible = "nxp,pn5xx";
+		reg = <0x28>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <17 0>;
+		nxp,pn5xx-irq = <&tlmm 17 0x00>;
+		nxp,pn5xx-ven = <&tlmm 16 0x00>;
+		nxp,pn5xx-fw-dwnld = <&tlmm 130 0x00>;
+		nxp,pn5xx-ese-pwr = <&tlmm 93 0x00>;
+		//nxp,pn5xx-swp2-pwr = <&tlmm129 0x00>;
+		//nxp,int_active_low = <0>;
+		nxp,pn5xx-clkreq = <&pm8937_gpios 2 0x00>;
+		nxp,clk-src = "BBCLK2";
+		interrupt-names = "nfc_irq";
+		pinctrl-names = "nfc_active","nfc_suspend";
+		pinctrl-0 = <&nfc_int_active &nfc_disable_active>;
+		pinctrl-1 = <&nfc_int_suspend &nfc_disable_suspend>;
+		clocks = <&clock_gcc clk_bb_clk2_pin>;
+		clock-names = "bb_clk2";
+		status = "disabled";
+	};
+	/*added by chenhui for SAR IC SX9325, begin*/
+	sx9310-input@28 {
+		compatible = "zte, sx9310-input";
+		reg = <0x28>;
+		//cc,irq_gpio = <&tlmm 90 0x0>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <90 2>;
+		interrupt-names = "sx9310_irq";
+		pinctrl-names = "sx9310_active", "sx9310_sleep";
+		pinctrl-0 = <&sx9310_int_active>;
+		pinctrl-1 = <&sx9310_int_suspend >;
+	};
+	/*end*/
+};
+/*zteadd by yangshentao10176221 for F10 SD cd pin start*/
+&sdhc_2 {
+	cd-gpios = <&tlmm 67 0x0>;
+};
+/*zteadd by yangshentao10176221 for F10 SD cd pin end*/
+
+/*zte add by chenwei10196163 for P840F10 compatible with Android N start*/
+&firmware {
+	android {
+		fstab {
+			vendor {
+				status = "ok";
+			};
+		};
+	};
+};
+/*zte add by chenwei10196163 for P840F10 compatible with Android N end*/
+
+/*ZTE yuxin add for P840S18 back camera DVDD voltage range 2018.01.26++*/
+&rpm_bus {
+	rpm-regulator-ldoa23 {
+		status = "okay";
+		pm8917_l23: regulator-l23 {
+			regulator-min-microvolt = <1050000>;
+			regulator-max-microvolt = <1200000>;
+			qcom,init-voltage = <1050000>;
+			status = "okay";
+		};
+	};
+};
+/*ZTE yuxin add for P840S18 back camera DVDD voltage range 2018.01.26--*/
+&secure_mem {
+	status = "ok";
+};
+

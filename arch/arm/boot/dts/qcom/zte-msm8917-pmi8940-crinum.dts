@@ -1,0 +1,170 @@
+/*
+ * Copyright (c) 2017, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/dts-v1/;
+
+#include "msm8917.dtsi"
+#include "msm8917-pmi8940-mtp.dtsi"
+#include "zte-msm8917-pmi8940-crinum.dtsi"
+#include "zte-msm8917-camera-sensor-crinum.dtsi"
+#include "dsi-panel-zte-truly-otm1290a-cpt-5p5-720p-video.dtsi"
+#include "dsi-panel-zte-lianchuang-jd9365d-hsd-720p-video.dtsi"
+#include "dsi-panel-zte-helitai-st7703-hsd-5p5-720p-video.dtsi"
+#include "dsi-panel-zte-truly-st7703-truly-5p5-720p-video.dtsi"
+#include "touch-key-backlight-crinum.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. MSM8917-PMI8940 MTP";
+	compatible = "qcom,msm8917-mtp", "qcom,msm8917", "qcom,mtp";
+	qcom,board-id = <104 0>;
+	qcom,pmic-id = <0x10019 0x020011 0x0 0x0>;
+};
+
+
+&mdss_dsi0 {
+	qcom,dsi-pref-prim-pan = <&dsi_truly_otm1290a_cpt_720p_video>;
+	pinctrl-names = "mdss_default", "mdss_sleep";
+	pinctrl-0 = <&mdss_dsi_active &mdss_te_active>;
+	pinctrl-1 = <&mdss_dsi_suspend &mdss_te_suspend>;
+
+	qcom,platform-te-gpio = <&tlmm 24 0>;
+	qcom,platform-reset-gpio = <&tlmm 60 0>;
+
+	qcom,regulator-ldo-mode;
+
+	zte,disp_vsp_en_gpio = <&tlmm 89 0>;
+	zte,disp_vsn_en_gpio = <&tlmm 90 0>;
+};
+
+&spmi_bus {
+	qcom,pmi8940@2 {
+		status = "disabled";
+
+		pmi8940_revid: qcom,revid@100 {
+			status = "disabled";
+		};
+
+		qcom,power-on@800 {
+			status = "disabled";
+		};
+
+		pmi8940_vadc: vadc@3100 {
+			status = "disabled";
+		};
+
+		pmi8940_gpios: gpios {
+			status = "disabled";
+
+			gpio@c000 {
+				status = "disabled";
+			};
+
+			gpio@c100 {
+				status = "disabled";
+			};
+		};
+
+		pmi8940_mpps: mpps {
+			status = "disabled";
+
+			mpp@a000 {
+				status = "disabled";
+			};
+
+			mpp@a100 {
+				status = "disabled";
+			};
+
+			mpp@a200 {
+				status = "disabled";
+			};
+
+			mpp@a300 {
+				status = "disabled";
+			};
+		};
+
+		pmi8940_charger: qcom,qpnp-smbcharger {
+			status = "disabled";
+		};
+
+		pmi8940_fg: qcom,fg {
+			status = "disabled";
+
+			qcom,fg-memif@4400 {
+				status = "disabled";
+			};
+		};
+
+		bcl@4200 {
+			status = "disabled";
+		};
+		qcom,leds@a000 {
+			status = "disabled";
+		};
+		qcom,leds@a100 {
+			status = "disabled";
+		};
+		qcom,leds@a300 {
+			status = "disabled";
+		};
+	};
+
+	qcom,pmi8940@3 {
+		status = "disabled";
+
+		pmi8940_pwm: pwm@b000 {
+			status = "disabled";
+		};
+
+		labibb: qpnp-labibb-regulator {
+			status = "disabled";
+		};
+
+		wled: qcom,leds@d800 {
+			status = "disabled";
+		};
+
+		flash_led: qcom,leds@d300 {
+			status = "disabled";
+
+			pmi8940_flash0: qcom,flash_0 {
+				status = "disabled";
+			};
+
+			pmi8940_flash1: qcom,flash_1 {
+				status = "disabled";
+			};
+
+			pmi8940_torch0: qcom,torch_0 {
+				status = "disabled";
+			};
+
+			pmi8940_torch1: qcom,torch_1 {
+				status = "disabled";
+			};
+
+			pmi8940_switch: qcom,switch {
+				status = "disabled";
+			};
+		};
+
+		pmi_haptic: qcom,haptic@c000 {
+			status = "disabled";
+		};
+	};
+};
+
+&usb_otg {
+	qcom,hsusb-otg-mode = <1>;
+};

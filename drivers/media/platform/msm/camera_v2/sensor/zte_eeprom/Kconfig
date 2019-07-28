@@ -1,0 +1,156 @@
+config IMX351_EEPROM
+	bool "ZTE IMX351 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config OV8856_EEPROM
+	bool "ZTE OV8856 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config HI846_EEPROM
+	bool "ZTE HI846 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config OV16B10_031_EEPROM
+	bool "ZTE OV16B10_031 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config S5K4H7_127_EEPROM
+	bool "ZTE S5K4H7_127 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config IMX351_033_EEPROM
+	bool "ZTE IMX351_033 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config IMX351_034_EEPROM
+	bool "ZTE IMX351_034 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config IMX351_032_EEPROM
+	bool "ZTE IMX351_032 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config S5K4H7_Z610CA_127_EEPROM
+	bool "ZTE S5K4H7_Z610CA_127 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config S5K4H7_Z6450T_127_EEPROM
+	bool "ZTE S5K4H7_Z6450T_127 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config S5K3L6_035_EEPROM
+	bool "ZTE S5K3L6_035 Calibration support"
+	depends on MSMB_CAMERA
+	default n
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config OV13855_035_EEPROM
+	bool "ZTE OV13855_035 Calibration support"
+	depends on MSMB_CAMERA
+	default n
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config OV16885_4C_039_EEPROM
+	bool "ZTE OV16885_4C_039 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config OV16885_Z6450T_041_EEPROM
+	bool "ZTE OV16885_Z6450T_041 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config SP2509V_Z6450T_090_EEPROM
+	bool "ZTE SP2509V_Z6450T_090 Calibration support"
+	depends on MSMB_CAMERA
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config HI846_131_EEPROM
+	bool "ZTE HI846_131 Calibration support"
+	depends on MSMB_CAMERA
+	default n
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol
+
+config S5K4H7_131_EEPROM
+	bool "ZTE S5K4H7_131 Calibration support"
+	depends on MSMB_CAMERA
+	default n
+	help
+	  Enable support for ROM Interface for Calibration
+	  Provides interface for reading the Claibration data.
+	  and also provides support for writing data in case of FLASH ROM.
+	  Currently supports CCI  protocol

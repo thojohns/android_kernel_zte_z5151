@@ -1,0 +1,275 @@
+/*
+ * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "dsi-panel-zte-boe-hx83112a-6p3-1080p-video.dtsi" /*add by yujianhua for V8*/
+#include "touch-key-backlight-dephne.dtsi"
+
+/*zteadd by yujianhua for lcm F10 start*/
+&mdss_dsi0 {
+	qcom,dsi-pref-prim-pan = <&dsi_boe_hx83112a_6p3_1080p_video>;
+	/delete-property/ qcom,platform-enable-gpio;
+	/delete-property/ qcom,platform-bklight-en-gpio;
+};
+/*zteadd by yujianhua for lcm F10 end*/
+
+/*zteadd by yujianhua for lcm F10 start*/
+&dsi_boe_hx83112a_6p3_1080p_video {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+/*zteadd by yujianhua for lcm F10 end*/
+
+&i2c_8 {
+	tfa98xx@34 {
+		compatible = "nxp,tfa98xx";
+		reg = <0x34>;
+		reset-gpio = <&tlmm 8 0x0>;
+	};
+};
+
+&int_codec {
+	qcom,model = "msm8952-snd-card-mtp";
+	qcom,msm-ext-pa = "primary","quaternary";
+	/* qcom,cdc-us-euro-gpios = <&tlmm 63 0>; */
+	qcom,msm-mbhc-hphl-swh = <1>;
+	qcom,msm-mbhc-gnd-swh = <1>;
+	qcom,msm-hs-micbias-type = "internal";
+	qcom,msm-micbias1-ext-cap;
+
+	qcom,msm-gpios =
+		"pri_i2s",
+		"us_eu_gpio",
+		"quat_i2s";
+	qcom,pinctrl-names =
+		"all_off",
+		"pri_i2s_act",
+		"us_eu_gpio_act",
+		"pri_i2s_us_eu_gpio_act",
+		"quat_act",
+		"quat_pri_i2s_act",
+		"quat_us_eu_gpio_act",
+		"quat_us_eu_gpio_pri_i2s_act";
+	pinctrl-names =
+		"all_off",
+		"pri_i2s_act",
+		"us_eu_gpio_act",
+		"pri_i2s_us_eu_gpio_act",
+		"quat_act",
+		"quat_pri_i2s_act",
+		"quat_us_eu_gpio_act",
+		"quat_us_eu_gpio_pri_i2s_act";
+	pinctrl-0 = <&cdc_pdm_lines_sus &sec_tlmm_lines_sus
+			&cdc_pdm_lines_2_sus &cross_conn_det_sus
+			&pri_tlmm_lines_sus &pri_tlmm_ws_sus>;
+	pinctrl-1 = <&cdc_pdm_lines_act &sec_tlmm_lines_sus
+			&cdc_pdm_lines_2_act &cross_conn_det_sus
+			&pri_tlmm_lines_sus &pri_tlmm_ws_sus>;
+	pinctrl-2 = <&cdc_pdm_lines_sus &sec_tlmm_lines_sus
+			&cdc_pdm_lines_2_sus &cross_conn_det_act
+			&pri_tlmm_lines_sus &pri_tlmm_ws_sus>;
+	pinctrl-3 = <&cdc_pdm_lines_act &sec_tlmm_lines_sus
+			&cdc_pdm_lines_2_act &cross_conn_det_act
+			&pri_tlmm_lines_sus &pri_tlmm_ws_sus>;
+	pinctrl-4 = <&cdc_pdm_lines_sus
+			&cdc_pdm_lines_2_sus &cross_conn_det_sus
+			&sec_tlmm_lines_act>;
+	pinctrl-5 = <&cdc_pdm_lines_act
+			&cdc_pdm_lines_2_act &cross_conn_det_sus
+			&sec_tlmm_lines_act>;
+	pinctrl-6 = <&cdc_pdm_lines_sus
+			&cdc_pdm_lines_2_sus &cross_conn_det_act
+			&sec_tlmm_lines_act>;
+	pinctrl-7 = <&cdc_pdm_lines_act
+			&cdc_pdm_lines_2_act &cross_conn_det_act
+			&sec_tlmm_lines_act>;
+
+	asoc-codec = <&stub_codec>, <&pm8937_cajon_dig>, <&hdmi_dba>;
+	asoc-codec-names = "msm-stub-codec.1", "cajon_codec","msm-hdmi-dba-codec-rx";
+};
+
+&soc {
+	gpio_keys {
+		compatible = "gpio-keys";
+		input-name = "gpio-keys";
+		pinctrl-names = "tlmm_gpio_key_active","tlmm_gpio_key_suspend";
+		pinctrl-0 = <&gpio_key_active>;
+		pinctrl-1 = <&gpio_key_suspend>;
+
+		vol_down {
+			label = "volume_down";
+			gpios = <&tlmm 128 0x1>;
+			linux,input-type = <1>;
+			linux,code = <114>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+		vol_up {
+			label = "volume_up";
+			gpios = <&tlmm 91 0x1>;
+			linux,input-type = <1>;
+			linux,code = <115>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+	};
+/*added by chenhui for hall*/
+	hall_sensor {
+		compatible = "ah,hall_ic";
+		ah,gpio_irq = <&tlmm 59 0x0>;
+		linux,name = "hall_sensor";
+	};
+	/* ZTE, USB phy init seq override*/
+	usb_otg: usb@78db000 {
+		qcom,hsusb-otg-phy-init-seq =
+			<0x33 0x80 0x3B 0x81 0x07 0x82 0x13 0x83 0xffffffff>;
+	};
+};
+
+&wsa881x_i2c_f {
+		status = "disable";
+};
+
+&tlmm {
+		pmx_mdss: pmx_mdss {
+			mdss_dsi_active: mdss_dsi_active {
+				mux {
+					pins = "gpio60";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio60";
+					drive-strength = <8>; /* 8 mA */
+					bias-disable = <0>; /* no pull */
+					output-high;
+				};
+			};
+		};
+
+		/* WSA VI sense */
+		wsa-vi {
+			wsa_vi_on: wsa_vi_on {
+				mux {
+					pins = "gpio44", "gpio44";
+					function = "wsa_io";
+				};
+
+				config {
+					pins = "gpio44", "gpio44";
+					drive-strength = <8>; /* 8 MA */
+					bias-disable; /* NO pull */
+				};
+			};
+
+			wsa_vi_off: wsa_vi_off {
+				mux {
+					pins = "gpio44", "gpio44";
+					function = "wsa_io";
+				};
+
+				config {
+					pins = "gpio44", "gpio44";
+					drive-strength = <2>; /* 2 MA */
+					bias-pull-down;
+				};
+			};
+		};
+
+		sec-tlmm-lines {
+			sec_tlmm_lines_act: sec_tlmm_lines_act {
+				mux {
+					pins = "gpio94", "gpio95", "gpio12", "gpio13";
+					function = "sec_mi2s";
+
+				};
+
+				config {
+					pins = "gpio94", "gpio95", "gpio12", "gpio13";
+					drive-strength = <8>;
+				};
+			};
+
+			sec_tlmm_lines_sus: sec_tlmm_lines_sus {
+				mux {
+					pins = "gpio94", "gpio95", "gpio12", "gpio13";
+					function = "sec_mi2s";
+
+				};
+
+				config {
+					pins = "gpio94", "gpio95", "gpio12", "gpio13";
+					drive-strength = <2>;
+					bias-pull-down;
+				};
+			};
+		};
+
+};
+
+&spmi_bus {
+
+	qcom,pmi8950@2 {
+		qcom,leds@a000 {
+			status = "okay";
+			qcom,led_mpp_1 {	/* red led */
+				label = "mpp";
+				linux,name = "red";
+				linux,default-trigger = "battery-charging";
+				qcom,default-state = "off";
+				qcom,max-current = <40>;
+				qcom,current-setting = <10>;
+				qcom,id = <6>;
+				#qcom,source-sel = <8>;
+				qcom,source-sel = <11>; /* connect MPP to inverted DTEST2*/
+				qcom,src-sel = <10>;
+				qcom,mode-ctrl = <0x10>;
+				qcom,pwm-channel = <0>;
+				qcom,pwm-us = <1000>;
+				qcom,vin-ctrl = <0x00>;
+				qcom,duty-pcts = <50>;
+				qcom,mode = "pwm";
+				qcom,use-blink;
+				pwms = <&pmi8950_pwm 0 0>;
+				qcom,pwm-names = "red-led";
+				zte,is-operator-sprint = "yes";		/* blink time 8S or 10s */
+				zte,is-operator-dephne = "yes";		/*blink time  10s  */
+			};
+		};
+		qcom,leds@a100 {
+			status = "okay";
+			qcom,led_mpp_2 {	/* green led */
+				label = "mpp";
+				linux,name = "green";		/* orgin is wled-backlight */
+				linux,default-trigger = "battery-full";	/* org="bkl-trigger"; */
+				qcom,default-state = "off";
+				qcom,max-current = <40>;
+				qcom,current-setting = <5>;	/*+ zte add +*/
+				qcom,id = <6>;				/* in leds-qpnp.c enum QPNP_ID_LED_MPP(6) */
+				#qcom,source-sel = <8>;		/* select power source, default 1 (enabled)(org=8) */
+				qcom,source-sel = <10>; /* connect MPP to DTEST2*/
+				qcom,src-sel = <10>;
+				qcom,mode-ctrl = <0x60>;	/* operation mode, default 0x60 = Mode Sink (org=0x10)*/
+				qcom,pwm-channel = <0>;
+				qcom,pwm-us = <1000>;
+				qcom,vin-ctrl = <0x00>;		/* select input source, 0 to 3 */
+				qcom,duty-pcts = <50>;
+				qcom,mode = "pwm";
+				qcom,use-blink;
+				pwms = <&pmi8950_pwm 0 0>;
+				qcom,pwm-names = "green-led";
+				zte,is-operator-sprint = "yes";		/* blink time 8S or 10s */
+				zte,is-operator-dephne = "yes";		/* blink time 10s */
+			};
+		};
+	};
+};
+

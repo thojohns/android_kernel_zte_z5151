@@ -1,0 +1,51 @@
+
+qcom,2165471_2540mah {
+	/* #2165471_ZTE_P852F52_2540mAh_averaged_MasterSlave_Oct7th2015*/
+	qcom,max-voltage-uv = <4440000>;
+	qcom,nom-batt-capacity-mah = <2540>;
+	qcom,batt-id-kohm = <470>;
+	qcom,battery-beta = <4050>;
+	qcom,battery-type = "2165471_2540mah";
+	qcom,chg-rslow-comp-c1 = <2941206>;
+	qcom,chg-rslow-comp-c2 = <3611120>;
+	qcom,chg-rs-to-rslow = <1628392>;
+	qcom,chg-rslow-comp-thr = <0x99>;
+	qcom,fastchg-current-ma = <1000>;
+	qcom,fg-cc-cv-threshold-mv = <4440>;
+	qcom,checksum = <0x73E6>;
+	qcom,gui-version = "PMI8950GUI - 2.0.0.14";
+	qcom,fg-profile-data = [
+		 F6 83 A7 7D
+		 CB 81 66 7C
+		 65 83 6D 74
+		 1C 89 D8 8F
+		 0A 82 33 9A
+		 E2 BC 30 C9
+		 5B 11 FB 83
+		 8A 7D C0 81
+		 61 7C 62 83
+		 15 67 86 88
+		 3E 94 64 82
+		 8F 98 F0 B6
+		 1C C3 52 14
+		 15 0A 14 5A
+		 14 70 0E FE
+		 D9 3C 9C 44
+		 97 38 00 00
+		 98 45 3F 29
+		 CF 30 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 E6 72 07 71
+		 29 63 53 83
+		 CD 75 64 69
+		 01 58 0F 7A
+		 C8 6F 7A 61
+		 80 74 C3 9B
+		 1E 94 62 7F
+		 64 A0 71 0C
+		 28 00 FF 36
+		 F0 11 30 03
+		 00 00 00 0C
+	];
+};

@@ -1,0 +1,67 @@
+/*for touchscreen and key*/
+
+&soc {
+	i2c@78b7000 {
+		novatek_touch@62 {
+			compatible = "novatek,NVT-ts";
+			reg = <0x62>;
+			interrupt-parent = <&tlmm>;
+			interrupts = <24 0x2008>;
+			vdd-supply = <&pm8937_l17>;
+			avdd-supply = <&pm8937_l6>;
+			pinctrl-names = "pmx_ts_active", "pmx_ts_suspend";
+			pinctrl-0 = <&ts_int_active &ts_reset_active>;
+			pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+			novatek,reset-gpio = <&tlmm 64 0x00>;
+			novatek,irq-gpio = <&tlmm 65 0x2008>;
+
+		};
+
+		synaptics_dsx@20 {
+			compatible = "synaptics,dsx-i2c";
+			reg = <0x20>;
+			interrupt-parent = <&tlmm>;
+			interrupts = <65 0x2008>;
+			vdd-supply = <&pm8937_l17>;
+			avdd-supply = <&pm8937_l6>;
+			synaptics,pwr-reg-name = "avdd";
+			synaptics,bus-reg-name = "vdd";
+			pinctrl-names = "pmx_ts_active", "pmx_ts_suspend";
+			pinctrl-0 = <&ts_int_active &ts_reset_active>;
+			pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+			synaptics,ub-i2c-addr = <0x2c>;
+			synaptics,irq-gpio = <&tlmm 65 0x2008>;
+			synaptics,irq-on-state = <0>;
+			synaptics,power-delay-ms = <200>;
+			synaptics,reset-delay-ms = <200>;
+			synaptics,reset-on-state = <0>;
+			synaptics,reset-active-ms = <20>;
+		};
+	};
+
+	gpio_keys {
+		compatible = "gpio-keys";
+		input-name = "gpio-keys";
+		pinctrl-names = "tlmm_gpio_key_active","tlmm_gpio_key_suspend";
+		pinctrl-0 = <&gpio_key_active>;
+		pinctrl-1 = <&gpio_key_suspend>;
+
+		vol_down {
+			label = "volume_down";
+			gpios = <&tlmm 128 0x1>;
+			linux,input-type = <1>;
+			linux,code = <114>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+
+		vol_up {
+			label = "volume_up";
+			gpios = <&tlmm 91 0x1>;
+			linux,input-type = <1>;
+			linux,code = <115>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+	};
+};

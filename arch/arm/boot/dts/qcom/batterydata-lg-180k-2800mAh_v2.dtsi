@@ -1,0 +1,51 @@
+
+qcom,batterydata-lg-180k-2800mAh {
+	/* #2712635_ZTE_P840F01scud_2800mAh_averaged_MasterSlave_Dec15th2016*/
+	qcom,max-voltage-uv = <4400000>;
+	qcom,nom-batt-capacity-mah = <2800>;
+	qcom,batt-id-kohm = <180>;
+	qcom,battery-beta = <4050>;
+	qcom,battery-type = "batterydata-lg-180k-2800mAh";
+	qcom,chg-rslow-comp-c1 = <2530450>;
+	qcom,chg-rslow-comp-c2 = <2580774>;
+	qcom,chg-rs-to-rslow = <1702414>;
+	qcom,chg-rslow-comp-thr = <0x99>;
+	qcom,fastchg-current-ma = <1500>;
+	qcom,fg-cc-cv-threshold-mv = <4390>;
+	qcom,checksum = <0xA23E>;
+	qcom,gui-version = "PMI8950GUI - 2.0.0.16";
+	qcom,fg-profile-data = [
+		 BF 83 73 77
+		 80 80 93 76
+		 5A 83 E6 66
+		 DF 82 38 8D
+		 22 82 D7 98
+		 55 B6 8A C1
+		 64 19 F3 83
+		 34 7D 94 81
+		 4A 7C 7F 83
+		 10 7D C8 90
+		 D9 97 45 82
+		 9A 98 38 B6
+		 9D C1 52 15
+		 11 0B F8 59
+		 14 70 D9 FD
+		 D3 06 70 47
+		 5F 30 00 00
+		 D7 44 B7 38
+		 1D 46 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 42 73 B0 71
+		 A3 67 04 83
+		 B8 6E 09 61
+		 2B 63 64 7A
+		 E5 66 0D 4A
+		 08 6E 51 A2
+		 1E 02 69 DA
+		 65 A0 71 0C
+		 28 00 FF 36
+		 F0 11 30 03
+		 00 00 00 0C
+	];
+};

@@ -1,0 +1,52 @@
+/*
+ * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/dts-v1/;
+
+#include "msm8940.dtsi"
+#include "msm8940-pmi8950-mtp.dtsi"
+#include "zte-msm8940-pmi8950-daisy.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. MSM8940-PMI8950 MTP";
+	compatible = "qcom,msm8940-mtp", "qcom,msm8940", "qcom,mtp";
+	qcom,board-id= <103 0>;
+	qcom,pmic-id = <0x10019 0x020011 0x0 0x0>;
+};
+
+&pmi8950_charger {
+	qcom,float-voltage-mv = <4400>;
+	qcom,fastchg-current-ma = <2500>;
+	qcom,pmi8950_config_enable;
+	qcom,charging-timeout-mins = <768>;
+	qcom,thermal-mitigation = <1200 700 700 0>;
+};
+&pmi8950_fg{
+	qcom,warm-bat-decidegc = <450>;
+	qcom,cool-bat-decidegc = <100>;
+	qcom,hot-bat-decidegc = <500>;
+	qcom,cold-bat-decidegc = <20>;
+	qcom,cool-bat-decidegc = <100>;
+	qcom,vbat-estimate-diff-mv = <150>;
+};
+&pmi_haptic{
+	qcom,play-mode = "buffer";
+	qcom,wave-play-rate-us = <4255>;
+	qcom,actuator-type = "lra";
+	qcom,wave-shape = "sine";
+	qcom,vmax-mv = <2900>;
+	qcom,wave-samples = [33 33 33 33 33 33 33 33];
+};
+&mtp_batterydata {
+	#include "zte_z610dl_3900mAh.dtsi"
+};

@@ -1,0 +1,49 @@
+
+qcom,zte_z610dl_3900mAh {
+	/* #3137618_ZTE_Z610DL_3900mAh_averaged_MasterSlave_Sept20th2017*/
+	qcom,max-voltage-uv = <4400000>;
+	qcom,nom-batt-capacity-mah = <3900>;
+	qcom,batt-id-kohm = <20>;
+	qcom,battery-beta = <4050>;
+	qcom,battery-type = "ZTE_BATTERY_DATA_ID_1";
+	qcom,chg-rslow-comp-c1 = <3634438>;
+	qcom,chg-rslow-comp-c2 = <6024067>;
+	qcom,chg-rs-to-rslow = <638563>;
+	qcom,chg-rslow-comp-thr = <0xB2>;
+	qcom,checksum = <0xE47D>;
+	qcom,gui-version = "PMI8950GUI - 2.0.0.16";
+	qcom,fg-profile-data = [
+		F2 83 94 7D
+		C3 81 53 7C
+		5A 83 69 66
+		C5 82 57 8D
+		40 82 73 98
+		FB B5 6A C1
+		58 15 0F 88
+		98 7E 68 82
+		E3 7C 60 83
+		E9 5F BF 83
+		F8 8E 4C 82
+		BA 99 05 BD
+		F0 C9 5A 0E
+		A7 0F 0F 5B
+		14 70 71 FD
+		65 3E 75 46
+		C2 43 00 00
+		6D 47 38 35
+		77 39 00 00
+		00 00 00 00
+		00 00 00 00
+		9D 69 C8 68
+		21 4B 33 88
+		27 76 05 6B
+		83 68 89 81
+		94 74 BE 68
+		9A 58 92 AB
+		1D 06 60 1C
+		5D A0 71 0C
+		28 00 FF 36
+		F0 11 30 03
+		00 00 00 0C
+	];
+};

@@ -1,0 +1,24 @@
+ccflags-y += -Idrivers/media/platform/msm/camera_v2
+ccflags-y += -Idrivers/media/platform/msm/camera_v2/common
+ccflags-y += -Idrivers/media/platform/msm/camera_v2/sensor/io
+ccflags-y += -Idrivers/media/platform/msm/camera_v2/sensor/cci
+obj-$(CONFIG_MSM_EEPROM) += zte_eeprom.o
+obj-$(CONFIG_MSM_EEPROM) += common_eeprom.o
+obj-$(CONFIG_IMX351_EEPROM) += imx351_eeprom.o
+obj-$(CONFIG_HI846_EEPROM) += hi846_eeprom.o
+obj-$(CONFIG_OV8856_EEPROM) += ov8856_eeprom.o
+obj-$(CONFIG_OV16B10_031_EEPROM) += ov16b10_031_eeprom.o
+obj-$(CONFIG_S5K4H7_127_EEPROM) += s5k4h7_127_eeprom.o
+obj-$(CONFIG_IMX351_033_EEPROM) += imx351_033_eeprom.o
+obj-$(CONFIG_IMX351_034_EEPROM) += imx351_034_eeprom.o
+obj-$(CONFIG_S5K4H7_Z610CA_127_EEPROM) += s5k4h7_z610ca_127_eeprom.o
+obj-$(CONFIG_S5K4H7_Z6450T_127_EEPROM) += s5k4h7_z6450t_127_eeprom.o
+obj-$(CONFIG_IMX351_032_EEPROM) += imx351_032_eeprom.o
+obj-$(CONFIG_S5K3L6_035_EEPROM) += s5k3l6_035_eeprom.o
+obj-$(CONFIG_OV13855_035_EEPROM) += ov13855_035_eeprom.o
+obj-$(CONFIG_OV16885_4C_039_EEPROM) += ov16885_4c_039_eeprom.o
+obj-$(CONFIG_OV16885_Z6450T_041_EEPROM) += ov16885_z6450t_041_eeprom.o
+obj-$(CONFIG_SP2509V_Z6450T_090_EEPROM) += sp2509v_z6450t_090_eeprom.o
+obj-$(CONFIG_HI846_131_EEPROM) += hi846_131_eeprom.o
+obj-$(CONFIG_S5K4H7_131_EEPROM) += s5k4h7_131_eeprom.o
+

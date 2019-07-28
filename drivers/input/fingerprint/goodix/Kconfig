@@ -1,0 +1,3 @@
+config FINGERPRINT_GOODIX_3258
+  tristate "GOODIX fingerprint drvier support"
+  default n

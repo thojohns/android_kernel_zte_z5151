@@ -1,0 +1,196 @@
+/*
+ * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/dts-v1/;
+
+#include "msm8920.dtsi"
+#include "msm8920-pmi8940-qrd-sku7.dtsi"
+#include "zte-msm8920-pmi8940-zeus.dtsi"
+#include "zeus/zte-dsi-panel-helitech-st7703-720p-video.dtsi"
+#include "zeus/zte-dsi-panel-holitech-boe-st7703-720p-video.dtsi"
+#include "zeus/zte-dsi-panel-lead-hx8394f-720p-video.dtsi"
+#include "zeus/zte-dsi-panel-lianchuang-jd9365d-720p-video.dtsi"
+#include "zeus/zte-dsi-panel-skyworth-ili9881c-720p-video.dtsi"
+#include "zeus/zte-dsi-panel-skyworth-boe-st7703-720p-video.dtsi"
+#include "zeus/zte-dsi-panel-xinli-otm1290a-5p45-720p-video.dtsi"
+#include "zeus/zte-dsi-panel-dijing-panda-ili9881p-720p-video.dtsi"
+#include "zte-msm8917-camera-sensor-zeus.dtsi"
+#include "touch-key-backlight-zeus.dtsi"
+
+
+/ {
+	model = "Qualcomm Technologies, Inc. MSM8920-PMI8940 ZEUS";
+	compatible = "qcom,msm8920-qrd-sku7", "qcom,msm8920-qrd",
+		   "qcom,msm8920", "qcom,qrd";
+	qcom,msm-id = <320 0x10000>;
+	qcom,board-id = <210 0>;
+	qcom,pmic-id = <0x10019 0x020011 0x0 0x0>;
+};
+
+&spmi_bus {
+	qcom,pmi8940@2 {
+		status = "disabled";
+
+		pmi8940_revid: qcom,revid@100 {
+			status = "disabled";
+		};
+
+		qcom,power-on@800 {
+			status = "disabled";
+		};
+
+		pmi8940_vadc: vadc@3100 {
+			status = "disabled";
+		};
+
+		pmi8940_gpios: gpios {
+			status = "disabled";
+
+			gpio@c000 {
+				status = "disabled";
+			};
+
+			gpio@c100 {
+				status = "disabled";
+			};
+		};
+
+		pmi8940_mpps: mpps {
+			status = "disabled";
+
+			mpp@a000 {
+				status = "disabled";
+			};
+
+			mpp@a100 {
+				status = "disabled";
+			};
+
+			mpp@a200 {
+				status = "disabled";
+			};
+
+			mpp@a300 {
+				status = "disabled";
+			};
+		};
+
+		pmi8940_charger: qcom,qpnp-smbcharger {
+			status = "disabled";
+		};
+
+		pmi8940_fg: qcom,fg {
+			status = "disabled";
+
+			qcom,fg-memif@4400 {
+				status = "disabled";
+			};
+		};
+
+		bcl@4200 {
+			status = "disabled";
+		};
+		qcom,leds@a000 {
+			status = "disabled";
+		};
+		qcom,leds@a100 {
+			status = "disabled";
+		};
+		qcom,leds@a300 {
+			status = "disabled";
+		};
+	};
+
+	qcom,pmi8940@3 {
+		status = "disabled";
+
+		pmi8940_pwm: pwm@b000 {
+			status = "disabled";
+		};
+
+		labibb: qpnp-labibb-regulator {
+			status = "disabled";
+		};
+
+		wled: qcom,leds@d800 {
+			status = "disabled";
+		};
+
+		flash_led: qcom,leds@d300 {
+			status = "disabled";
+
+			pmi8940_flash0: qcom,flash_0 {
+				status = "disabled";
+			};
+
+			pmi8940_flash1: qcom,flash_1 {
+				status = "disabled";
+			};
+
+			pmi8940_torch0: qcom,torch_0 {
+				status = "disabled";
+			};
+
+			pmi8940_torch1: qcom,torch_1 {
+				status = "disabled";
+			};
+
+			pmi8940_switch: qcom,switch {
+				status = "disabled";
+			};
+		};
+
+		pmi_haptic: qcom,haptic@c000 {
+			status = "disabled";
+		};
+	};
+};
+
+&usb_otg {
+	qcom,hsusb-otg-mode = <1>;
+};
+
+&other_ext_mem{
+	reg = <0x0 0x84A00000 0x0 0x1E00000>;
+};
+&qcom_seecom{
+	status = "disabled";
+};
+&soc{
+	qcom_seecom_8920: qseecom@0x84A00000 {
+		compatible = "qcom,qseecom";
+		reg = <0x84A00000 0x1900000>;
+		reg-names = "secapp-region";
+		qcom,hlos-num-ce-hw-instances = <1>;
+		qcom,hlos-ce-hw-instance = <0>;
+		qcom,qsee-ce-hw-instance = <0>;
+		qcom,disk-encrypt-pipe-pair = <2>;
+		qcom,support-fde;
+		qcom,msm-bus,name = "qseecom-noc";
+		qcom,msm-bus,num-cases = <4>;
+		qcom,msm-bus,num-paths = <1>;
+		qcom,support-bus-scaling;
+		qcom,msm-bus,vectors-KBps =
+			<55 512 0 0>,
+			<55 512 0 0>,
+			<55 512 120000 1200000>,
+			<55 512 393600 3936000>;
+		clocks = <&clock_gcc clk_crypto_clk_src>,
+			 <&clock_gcc clk_gcc_crypto_clk>,
+			 <&clock_gcc clk_gcc_crypto_ahb_clk>,
+			 <&clock_gcc clk_gcc_crypto_axi_clk>;
+		clock-names = "core_clk_src", "core_clk",
+				"iface_clk", "bus_clk";
+		qcom,ce-opp-freq = <100000000>;
+	};
+};

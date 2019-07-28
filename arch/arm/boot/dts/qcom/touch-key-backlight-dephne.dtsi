@@ -1,0 +1,21 @@
+//for touchscreen and key and keypad-backlight
+
+&soc {
+	i2c@78b7000 {
+		himax-ts@48 {
+			compatible = "himax,hxcommon";
+			reg = <0x48>;
+			interrupt-parent = <&tlmm>;
+			interrupts = <65 0x2>;
+			vdd_ana-supply = <&pm8937_l17>;
+			vcc_i2c-supply = <&pm8937_l6>;
+			himax,panel-coords = <0 1080 0 2160>;
+			himax,display-coords = <0 1080 0 2160>;
+			himax,irq-gpio = <&tlmm 65 0x00>;
+			himax,rst-gpio = <&tlmm 64 0x00>;
+			himax,id0-gpio = <&tlmm 125 0x00>;
+			himax,id1-gpio = <&tlmm 92 0x00>;
+			report_type = <1>;
+		};
+	};
+};

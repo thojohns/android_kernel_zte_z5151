@@ -1,0 +1,49 @@
+
+qcom,zte_batterydata_4080mah_fmt {
+	/* #2978351_ZTE_P840T21_4080mAh_averaged_MasterSlave_Jun6th2017*/
+	qcom,max-voltage-uv = <4400000>;
+	qcom,nom-batt-capacity-mah = <4080>;
+	qcom,batt-id-kohm = <10>;
+	qcom,battery-beta = <4050>;
+	qcom,battery-type = "ZTE_BATTERY_DATA_ID_2";
+	qcom,chg-rslow-comp-c1 = <3188392>;
+	qcom,chg-rslow-comp-c2 = <4414699>;
+	qcom,chg-rs-to-rslow = <801734>;
+	qcom,chg-rslow-comp-thr = <0xA3>;
+	qcom,checksum = <0x655C>;
+	qcom,gui-version = "PMI8950GUI - 2.0.0.16";
+	qcom,fg-profile-data = [
+		 ED 83 4C 7D
+		 65 81 B1 77
+		 53 83 91 59
+		 06 80 EE 86
+		 E8 81 9C 9B
+		 DA BE 3D D0
+		 5C 0E EF 83
+		 EE 7C 08 81
+		 E4 76 56 83
+		 2C 68 16 80
+		 D3 8C 4E 82
+		 B1 99 04 BD
+		 FB C9 54 0E
+		 83 10 52 59
+		 14 70 71 FD
+		 15 46 C0 36
+		 5B 41 00 00
+		 7F 46 B0 31
+		 AF 31 00 00
+		 00 00 00 00
+		 00 00 00 00
+		 43 6A 58 69
+		 BA 6A C4 81
+		 E1 6E C8 60
+		 09 6A 95 80
+		 1D 6E 3F 61
+		 53 76 6A A8
+		 17 8D 61 38
+		 64 A0 71 0C
+		 28 00 FF 36
+		 F0 11 30 03
+		 00 00 00 0C
+	];
+};

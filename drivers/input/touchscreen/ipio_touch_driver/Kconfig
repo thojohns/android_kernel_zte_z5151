@@ -1,0 +1,14 @@
+#
+# ILI9881 Touchscreen driver configuration
+#
+
+config TOUCHSCREEN_ILITEK
+	bool "ILITEK touchscreen driver"
+	depends on I2C
+	help
+		Say Y here if you have ILI9881 touch panel.
+		if unsure, say N.
+		To compile this driver as a module, choose M here.
+
+config ILI_FIRMWARE_PATH
+	string "ILITEK firmware path"

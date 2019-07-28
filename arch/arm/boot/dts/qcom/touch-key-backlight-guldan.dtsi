@@ -1,0 +1,73 @@
+/*for touchscreen and key*/
+
+&soc {
+	i2c@78b7000 {
+		himax-ts@48 {
+			compatible = "himax,hxcommon";
+			reg = <0x48>;
+			vdd-supply = <&pm8917_l17>;
+			avdd-supply = <&pm8917_l6>;
+			pinctrl-names = "pmx_ts_init";
+			pinctrl-0 = <&ts_int_init &ts_reset_init>;
+			himax,panel-coords = <0 720 0 1440>;
+			himax,display-coords = <0 720 0 1440>;
+			himax,irq-gpio = <&tlmm 65 0x00>;
+			himax,rst-gpio = <&tlmm 64 0x00>;
+			himax,id0-gpio = <&tlmm 125 0x00>;
+			himax,id1-gpio = <&tlmm 92 0x00>;
+			report_type = <1>;
+		};
+
+		novatek_touch@62 {
+			compatible = "novatek,NVT-ts";
+			reg = <0x62>;
+			vdd-supply = <&pm8917_l17>;
+			avdd-supply = <&pm8917_l6>;
+			pinctrl-names = "pmx_ts_init";
+			pinctrl-0 = <&ts_int_init &ts_reset_init>;
+			novatek,reset-gpio = <&tlmm 64 0x00>;
+			novatek,irq-gpio = <&tlmm 65 0x2008>;
+			novatek,id0-gpio = <&tlmm 125 0x00>;
+			novatek,id1-gpio = <&tlmm 92 0x00>;
+		};
+
+		ilitek@41 {
+			compatible = "tchip,ilitek";
+			reg = <0x41>;
+			vdd-supply = <&pm8917_l17>;
+			vcc_i2c-supply = <&pm8917_l6>;
+			pinctrl-names = "pmx_ts_init";
+			pinctrl-0 = <&ts_int_init &ts_reset_init>;
+			touch,irq-gpio = <&tlmm 65 0x2008>;
+			touch,reset-gpio = <&tlmm 64 0x00>;
+			touch,id0-gpio = <&tlmm 125 0x00>;
+			touch,id1-gpio = <&tlmm 92 0x00>;
+		};
+	};
+
+	gpio_keys {
+		compatible = "gpio-keys";
+		input-name = "gpio-keys";
+		pinctrl-names = "tlmm_gpio_key_active","tlmm_gpio_key_suspend";
+		pinctrl-0 = <&volume_key_active_8920>;
+		pinctrl-1 = <&volume_key_suspend_8920>;
+
+		vol_down {
+			label = "volume_down";
+			gpios = <&tlmm 128 0x1>;
+			linux,input-type = <1>;
+			linux,code = <114>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+
+		vol_up {
+			label = "volume_up";
+			gpios = <&tlmm 91 0x1>;
+			linux,input-type = <1>;
+			linux,code = <115>;
+			gpio-key,wakeup;
+			debounce-interval = <15>;
+		};
+	};
+};

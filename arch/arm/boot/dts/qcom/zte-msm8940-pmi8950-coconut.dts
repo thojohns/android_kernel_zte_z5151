@@ -1,0 +1,91 @@
+/*
+ * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/dts-v1/;
+
+#include "msm8940.dtsi"
+#include "msm8940-pmi8950-mtp.dtsi"
+#include "zte-msm8940-pmi8950-coconut.dtsi"
+#include "dsi-panel-zte-tm-nt35695-tm-6p0-1080p-video.dtsi"
+#include "dsi-panel-zte-tm-ili7807d-tm-6p0-1080p-video.dtsi"
+#include "dsi-panel-zte-lead_otm1906a_auo_6p0_1080p_cmd_n9560.dtsi"
+#include "dsi-panel-zte-lead-otm1911a-auo-6p0-1080p-video.dtsi"
+#include "dsi-panel-zte-dijing-nt35695-auo-6p0-1080p-video.dtsi"
+#include "touch-key-backlight-coconut.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. MSM8940-PMI8950 MTP";
+	compatible = "qcom,msm8940-mtp", "qcom,msm8940", "qcom,mtp";
+	qcom,board-id= <100 0>;
+	qcom,pmic-id = <0x10019 0x020011 0x0 0x0>;
+};
+
+&dsi_TM_NT35695_TM_6p0_1080P_video_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_TM_ILI7807D_TM_6p0_1080P_video_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_lead_otm1906a_auo_6p0_1080P_video_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_lead_otm1911a_auo_6p0_1080P_video_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&dsi_dijing_nt35695_auo_6p0_1080P_video_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+
+&mdss_dsi0 {
+	qcom,dsi-pref-prim-pan = <&dsi_lead_otm1911a_auo_6p0_1080P_video_vid>;
+	pinctrl-names = "mdss_default", "mdss_sleep";
+	pinctrl-0 = <&mdss_dsi_active &mdss_te_active>;
+	pinctrl-1 = <&mdss_dsi_suspend &mdss_te_suspend>;
+	/delete-property/ qcom,platform-enable-gpio;
+	qcom,platform-te-gpio = <&tlmm 24 0>;
+	qcom,platform-reset-gpio = <&tlmm 60 0>;
+	/delete-property/ qcom,platform-bklight-en-gpio;
+	qcom,regulator-ldo-mode;
+
+};
+
+&pmi8950_charger {
+	qcom,float-voltage-mv = <4400>;
+	qcom,fastchg-current-ma = <2500>;
+	qcom,pmi8950_config_enable;
+	qcom,iterm-ma = <150>;
+	qcom,charging-timeout-mins = <768>;
+	qcom,hvdcp-usb-in-current-ma = <1200>;
+	qcom,thermal-mitigation = <1200 1000 900 700 500 500>;
+};
+&pmi8950_fg{
+	qcom,warm-bat-decidegc = <450>;
+	qcom,cool-bat-decidegc = <100>;
+	qcom,hot-bat-decidegc = <500>;
+	qcom,cold-bat-decidegc = <20>;
+	qcom,fg-iterm-ma = <150>;
+	qcom,fg-chg-iterm-ma = <150>;
+	qcom,vbat-estimate-diff-mv = <150>;
+};
+&pmi_haptic{
+	qcom,actuator-type = "erm";
+	qcom,vmax-mv = <3000>;
+};
+&mtp_batterydata {
+	#include "zte_p840t21_4080mah.dtsi"
+	#include "zte_batterydata_4080mah_fmt.dtsi"
+};
