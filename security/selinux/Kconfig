@@ -135,6 +135,6 @@ config SECURITY_SELINUX_POLICYDB_VERSION_MAX_VALUE
 config SECURITY_SELINUX_POLICYPROC
 	bool "NSA SELinux policy preprocess/postprocess"
 	depends on SECURITY_SELINUX
-	default y
+	default n
 	help
 	  This option preprocesses/postprocesses policy as binary image.
